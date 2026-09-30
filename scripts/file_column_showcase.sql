@@ -2,7 +2,7 @@
 -- FILE column type showcase (Beta) — acme_sports.demo.contract_files
 -- ADDITIVE: does not touch the working demo spine. Reproducible build.
 --
--- Verified supported/enabled on FEVM fevm-classic-stable-9cgeia:
+-- Verified supported/enabled on FEVM YOUR_WORKSPACE:
 --   FILE EXTERNAL DDL, list_files(), to_file(), ai_parse_document(FILE), ai_query — all OK.
 -- Docs: https://docs.databricks.com/aws/en/unstructured/file  (admin Previews page gate)
 --

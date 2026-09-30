@@ -3,7 +3,7 @@
 Builds galleries (clip_id = {player_id}_{n}). Keeps existing singles for others."""
 import os, json, urllib.request, urllib.parse, time, re
 
-UA = "AcmeSportsDemo/1.0 (daniel.lacouture@databricks.com)"
+UA = "AcmeSportsDemo/1.0 (you@example.com)"
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "clips")
 os.makedirs(OUT, exist_ok=True)
 

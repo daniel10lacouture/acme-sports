@@ -1,7 +1,7 @@
 # Acme Sports Databricks Demo — Build Checklist
 
-**Workspace:** https://fevm-classic-stable-9cgeia.cloud.databricks.com (profile `fe-vm-classic-stable-9cgeia`, `DATABRICKS_AUTH_STORAGE=plaintext`)
-**Catalog/Schema:** `acme_sports.demo`  ·  **Warehouse:** `Genie-Warehouse` (`84c07276d33bc0a0`)  ·  **Volume:** `acme_sports.demo.documents`
+**Workspace:** https://YOUR_WORKSPACE.cloud.databricks.com (profile `YOUR_PROFILE`, `DATABRICKS_AUTH_STORAGE=plaintext`)
+**Catalog/Schema:** `acme_sports.demo`  ·  **Warehouse:** `Genie-Warehouse` (`YOUR_WAREHOUSE_ID`)  ·  **Volume:** `acme_sports.demo.documents`
 
 ## Environment (done in prior steps)
 - [x] Authenticate CLI to FEVM, confirm user (Daniel Lacouture, admin)
@@ -15,7 +15,7 @@
 - [x] M0.2b Upload 1 sample contract PDF to volume (contract_saka.pdf — parse-validated via ai_parse_document)
 - [x] M0.2c Upload 1 scout-note transcript to volume (scout_note_mosquera.txt)
 - [x] M0.3 Genie Agents Beta status — CONFIRMED ENABLED (both "Analyze Files in Volumes with Genie Agents" AND "Agent Mode APIs for Genie Agents"), proven functionally by a working Agent-mode file-retrieval call. Region: Americas AWS commercial (not GovCloud) → supported.
-- [x] M0.4 Genie Space "Acme Scout" created **fully via API** — space_id `01f19b59e604108aba34eda9d7e97569`. Table + instructions + 6 sample questions + **documents volume attached via API** (`data_sources.volumes:[{path}]` in serialized_space). No UI step needed.
+- [x] M0.4 Genie Space "Acme Scout" created **fully via API** — space_id `YOUR_GENIE_SPACE_ID`. Table + instructions + 6 sample questions + **documents volume attached via API** (`data_sources.volumes:[{path}]` in serialized_space). No UI step needed.
 - [x] M0.5 Blended question returns a CITED answer — PASS. Agent mode (`POST /api/2.0/genie/agents/{id}/responses`) blends table valuation (€25–35M, cite→SQL) + scout transcript (cite→volume file). Document-only Q also verified (Saka €180M clause + 30 Jun 2027 from the PDF).
 - [x] **PAUSE — reported for phone verification**
 
@@ -46,7 +46,7 @@
 - [x] Player-profile modal card (Vitor Roque style: GPR, valuation, GPV, fit bars, scout report)
 - [x] Upload flow A: contract PDF -> documents volume (Files API) — WORKING (tested via app: contract_barcola.pdf landed)
 - [x] Upload flow B: audio scout note -> transcribe (browser Web Speech) -> volume — WORKING (tested via app API)
-- [x] Deploy app — LIVE at https://acme-sports-7474652196525510.aws.databricksapps.com (SP granted UC + warehouse + Genie CAN_RUN). Ask endpoint returns blended cited Genie answers.
+- [x] Deploy app — LIVE at https://acme-sports-WORKSPACE_ID.aws.databricksapps.com (SP granted UC + warehouse + Genie CAN_RUN). Ask endpoint returns blended cited Genie answers.
 - [x] THEME CORRECTION: re-skinned to the real PRODUCT (light) theme — bg #F8F9FB, white cards + soft shadows, BLUE accent #2563EB (nav active/buttons/links), GREEN GPR pills (#16A34A on #E7F6EC), amber circular G logo kept, ACME SPORTS wordmark dark. Redeployed (SUCCEEDED) and verified live.
 ### Genie One branding
 - [x] Added all 4 tables to Acme Scout space (API) + enriched instructions (API). Tables must be sorted by identifier; use update-space without etag if conflict.
@@ -67,7 +67,7 @@
 - [x] VALIDATED live: "Luis Diaz" -> ONLY Luis Díaz (4 clips), "Rodri" -> ONLY Rodri (2 clips); "goalkeeper"/"player in a red kit" -> scene mode. Redeployed (SUCCEEDED).
 
 ### Demo runbook notebook
-- [x] notebooks/99_demo_runbook.py — narrative walkthrough (overview/arch, data, ai_extract ingestion, Genie hero moment + Genie One steps, app + upload beats, Clip Search, 5-7 min run-of-show + capabilities to name-drop). Imported to workspace: /Users/daniel.lacouture@databricks.com/acme_sports_demo_runbook (NOTEBOOK/PYTHON).
+- [x] notebooks/99_demo_runbook.py — narrative walkthrough (overview/arch, data, ai_extract ingestion, Genie hero moment + Genie One steps, app + upload beats, Clip Search, 5-7 min run-of-show + capabilities to name-drop). Imported to workspace: /Users/you@example.com/acme_sports_demo_runbook (NOTEBOOK/PYTHON).
 
 ### UI overhaul — faithful product mock + local screenshot-verify loop
 - [x] Framework audit: reference repo is self-contained index.html + inline CSS + vanilla JS (no React/Vite/Tailwind) → kept our no-build stack, applied design-token polish (Inter, neutral grays, 8px radius, soft shadows, hover/fade states).
@@ -150,7 +150,7 @@ Status table (updated as each lands):
 - [x] Redeployed app (SUCCEEDED). **check_run.py = 33/33 PASS** (+Vini Jr zero-leakage, descriptive scene-mode, video-serving checks).
 
 ### Demo flow / tee-up
-- [x] `notebooks/00_demo_flow.py` — problem statement + 5–7 min run-of-show + per-feature hooks/talk-track (PDF→volume, voice→volume transcript, Genie Agent over 8 tables+documents volume w/ PDF citations, Clip Search two-path, Lakebase what-if). Imported to workspace `/Users/daniel.lacouture@databricks.com/acme_sports_demo_flow`.
+- [x] `notebooks/00_demo_flow.py` — problem statement + 5–7 min run-of-show + per-feature hooks/talk-track (PDF→volume, voice→volume transcript, Genie Agent over 8 tables+documents volume w/ PDF citations, Clip Search two-path, Lakebase what-if). Imported to workspace `/Users/you@example.com/acme_sports_demo_flow`.
 
 ## FILE COLUMN TYPE PHASE (tag `file-column-v1`, additive)
 - [x] **Support verdict: SUPPORTED/ENABLED** on this FEVM (Beta, admin Previews gate). Probed: `FILE EXTERNAL` DDL, `list_files()`, `to_file()`, `ai_parse_document(FILE)`, `ai_query` — all OK.

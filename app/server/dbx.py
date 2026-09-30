@@ -8,11 +8,11 @@ Agent-mode conversation API (SSE) for blended structured+document answers.
 import os, json, urllib.request, base64, datetime, math, re, unicodedata
 from databricks.sdk import WorkspaceClient
 
-WAREHOUSE_ID = os.environ.get("WAREHOUSE_ID", "84c07276d33bc0a0")
+WAREHOUSE_ID = os.environ.get("WAREHOUSE_ID", "YOUR_WAREHOUSE_ID")
 CATALOG = os.environ.get("CATALOG", "acme_sports")
 SCHEMA = os.environ.get("SCHEMA", "demo")
 VOLUME = os.environ.get("VOLUME", "documents")
-GENIE_AGENT_ID = os.environ.get("GENIE_AGENT_ID", "01f19b59e604108aba34eda9d7e97569")
+GENIE_AGENT_ID = os.environ.get("GENIE_AGENT_ID", "YOUR_GENIE_SPACE_ID")
 TRANSCRIBE_ENDPOINT = os.environ.get("TRANSCRIBE_ENDPOINT", "")
 EMBED_ENDPOINT = os.environ.get("EMBED_ENDPOINT", "databricks-gte-large-en")
 VOL_BASE = f"/Volumes/{CATALOG}/{SCHEMA}/{VOLUME}"
@@ -24,7 +24,7 @@ _IS_APP = bool(os.environ.get("DATABRICKS_APP_NAME"))
 def _client() -> WorkspaceClient:
     if _IS_APP:
         return WorkspaceClient()
-    profile = os.environ.get("DATABRICKS_PROFILE", "fe-vm-classic-stable-9cgeia")
+    profile = os.environ.get("DATABRICKS_PROFILE", "YOUR_PROFILE")
     return WorkspaceClient(profile=profile)
 
 

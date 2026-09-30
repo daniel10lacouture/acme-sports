@@ -7,8 +7,8 @@ documents** (contract PDFs + scout-note transcripts in a UC Volume), demoable fr
 Acme Sports product UI with two working upload flows.
 
 ## Environment
-- Workspace: `https://fevm-classic-stable-9cgeia.cloud.databricks.com` (profile `fe-vm-classic-stable-9cgeia`, `DATABRICKS_AUTH_STORAGE=plaintext`)
-- Catalog/schema: `acme_sports.demo`  ·  Warehouse: `Genie-Warehouse` (`84c07276d33bc0a0`)
+- Workspace: `https://YOUR_WORKSPACE.cloud.databricks.com` (profile `YOUR_PROFILE`, `DATABRICKS_AUTH_STORAGE=plaintext`)
+- Catalog/schema: `acme_sports.demo`  ·  Warehouse: `Genie-Warehouse` (`YOUR_WAREHOUSE_ID`)
 - Volume: `acme_sports.demo.documents` (`contracts/`, `transcripts/`)
 
 ## Architecture (locked)
@@ -27,5 +27,5 @@ Acme Sports product UI with two working upload flows.
 - `check_run.py` — end-to-end verification (full build)
 
 ## Conventions
-Prefix every CLI call with `DATABRICKS_AUTH_STORAGE=plaintext` and `-p fe-vm-classic-stable-9cgeia`.
+Prefix every CLI call with `DATABRICKS_AUTH_STORAGE=plaintext` and `-p YOUR_PROFILE`.
 Run SQL via `python3 scripts/dbsql.py "<SQL>"` (targets Genie-Warehouse).

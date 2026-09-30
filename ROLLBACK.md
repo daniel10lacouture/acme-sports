@@ -34,11 +34,11 @@ git clean -fd                      # (optional) remove new untracked files/dirs
 
 ## 2. Known-good deployed app
 
-- **Live URL:** https://acme-sports-7474652196525510.aws.databricksapps.com
+- **Live URL:** https://acme-sports-WORKSPACE_ID.aws.databricksapps.com
 - **App name:** `acme-sports`
 - **Stack:** no-build vanilla-JS SPA + FastAPI (uvicorn), served per `app/app.yaml`.
-- **Workspace:** https://fevm-classic-stable-9cgeia.cloud.databricks.com
-- **CLI profile:** `fe-vm-classic-stable-9cgeia` (always prefix with
+- **Workspace:** https://YOUR_WORKSPACE.cloud.databricks.com
+- **CLI profile:** `YOUR_PROFILE` (always prefix with
   `DATABRICKS_AUTH_STORAGE=plaintext`)
 
 ### Redeploy the known-good app
@@ -50,7 +50,7 @@ Databricks Apps sync + deploy flow for this app. Run from the repo root after a
 ```bash
 cd ~/Desktop/Isaac/acme_sports
 export DATABRICKS_AUTH_STORAGE=plaintext
-P="-p fe-vm-classic-stable-9cgeia"
+P="-p YOUR_PROFILE"
 
 # 1) sync the app source to the app's workspace source path
 databricks $P sync ./app "/Workspace/Users/<you>/acme-sports" --full
@@ -67,22 +67,22 @@ The app's runtime config (env vars) lives in `app/app.yaml`:
 
 | Env var         | Value                                |
 |-----------------|--------------------------------------|
-| WAREHOUSE_ID    | `84c07276d33bc0a0`                   |
+| WAREHOUSE_ID    | `YOUR_WAREHOUSE_ID`                   |
 | CATALOG         | `acme_sports`                      |
 | SCHEMA          | `demo`                               |
 | VOLUME          | `documents`                          |
-| GENIE_AGENT_ID  | `01f19b59e604108aba34eda9d7e97569`   |
+| GENIE_AGENT_ID  | `YOUR_GENIE_SPACE_ID`   |
 
 ---
 
 ## 3. Known-good Databricks resources (DO NOT MODIFY/DROP)
 
-- **Genie space / agent id:** `01f19b59e604108aba34eda9d7e97569`
+- **Genie space / agent id:** `YOUR_GENIE_SPACE_ID`
   (name: "Acme Scout"; reached by the Genie One iOS app)
 - **Catalog:** `acme_sports`
 - **Schema:** `acme_sports.demo`
 - **Volume:** `acme_sports.demo.documents` (subdirs `contracts/`, `transcripts/`)
-- **Warehouse:** `Genie-Warehouse` (`84c07276d33bc0a0`)
+- **Warehouse:** `Genie-Warehouse` (`YOUR_WAREHOUSE_ID`)
 
 ### Existing tables (must NOT be dropped or altered — only ADD new ones)
 
@@ -122,13 +122,13 @@ The new phase must be **additive only**. It will:
 
 **L0 — Lakebase (created 2026-08-19, all VERIFIED working):**
 
-Profile prefix for every command below: `DATABRICKS_AUTH_STORAGE=plaintext ... -p fe-vm-classic-stable-9cgeia`
+Profile prefix for every command below: `DATABRICKS_AUTH_STORAGE=plaintext ... -p YOUR_PROFILE`
 
 1. **Lakebase Database Instance:** `acme-lakebase`
    - Tier: Provisioned (Public Preview), capacity `CU_1`, PG 16, `enable_pg_native_login=true`
    - uid: `d5b64a61-0714-4c18-9d12-745ec2ba3ab4`
-   - read_write_dns: `ep-wild-king-d29cnsjv.database.us-east-1.cloud.databricks.com`
-   - read_only_dns: `ep-wild-king-d29cnsjv-ro.database.us-east-1.cloud.databricks.com`
+   - read_write_dns: `YOUR_LAKEBASE_INSTANCE.database.us-east-1.cloud.databricks.com`
+   - read_only_dns: `YOUR_LAKEBASE_INSTANCE-ro.database.us-east-1.cloud.databricks.com`
    - port 5432, sslmode=require, user = Databricks principal email, OAuth token password.
    - Contains Postgres logical DB **`acme`** with:
      - schema **`acme_app`** — OLTP tables `scenarios`, `scenario_moves` + ENUM `acme_app.move_action`
@@ -148,7 +148,7 @@ Profile prefix for every command below: `DATABRICKS_AUTH_STORAGE=plaintext ... -
      Without this pin the pipeline fails with `UNITY_CATALOG_INITIALIZATION_FAILED /
      Metastore storage root URL does not exist`. Does NOT touch the 4 existing demo tables.
 
-5. **Workspace notebook (additive):** `/Users/daniel.lacouture@databricks.com/acme_sports_l0/`
+5. **Workspace notebook (additive):** `/Users/you@example.com/acme_sports_l0/`
    (the round-trip notebook, imported from `scripts/lakebase_l0_roundtrip.py`)
 
 - **New UC Delta tables in `acme_sports.demo`:** NONE. The 4 existing tables are untouched.
@@ -156,7 +156,7 @@ Profile prefix for every command below: `DATABRICKS_AUTH_STORAGE=plaintext ... -
 
 ### L0 teardown (reverse order)
 ```bash
-export DATABRICKS_AUTH_STORAGE=plaintext; P="fe-vm-classic-stable-9cgeia"
+export DATABRICKS_AUTH_STORAGE=plaintext; P="YOUR_PROFILE"
 # 1) synced table (also removes its DLT pipeline)
 databricks database delete-synced-database-table acme_lakebase.public.players -p $P
 # 2) UC database catalog
@@ -166,7 +166,7 @@ databricks database delete-database-instance acme-lakebase -p $P   # add --force
 # 4) additive pipeline-storage schema (safe: only pipeline bookkeeping lived here)
 python3 scripts/dbsql.py "DROP SCHEMA IF EXISTS acme_sports.lakebase_sync CASCADE"
 # 5) optional: remove the L0 notebook dir
-databricks workspace delete /Users/daniel.lacouture@databricks.com/acme_sports_l0 --recursive -p $P
+databricks workspace delete /Users/you@example.com/acme_sports_l0 --recursive -p $P
 ```
 
 **L1–L5 — app + models + Genie (created 2026-08-19, all VERIFIED; check_run 30/30):**
@@ -185,7 +185,7 @@ databricks workspace delete /Users/daniel.lacouture@databricks.com/acme_sports_l
    - UC model: `acme_sports.demo.acme_valuation` (v2, 4-feature OLS)
    - **Delete to roll back:**
      ```bash
-     databricks serving-endpoints delete acme-valuation -p fe-vm-classic-stable-9cgeia
+     databricks serving-endpoints delete acme-valuation -p YOUR_PROFILE
      # then the registered model:
      databricks api delete /api/2.1/unity-catalog/models/acme_sports.demo.acme_valuation -p ...
      ```
@@ -205,12 +205,12 @@ databricks workspace delete /Users/daniel.lacouture@databricks.com/acme_sports_l
 
 10. **App code (L1/L2/L3):** `app/server/{lakebase,valuation,impact}.py`, new API routes,
     scenario/valuation/injury UI, `psycopg2-binary` dep, Lakebase env vars in `app.yaml`.
-    Deployed to `acme-sports` at `/Workspace/Users/daniel.lacouture@databricks.com/acme-sports`.
+    Deployed to `acme-sports` at `/Workspace/Users/you@example.com/acme-sports`.
     Revert: `git reset --hard lakebase-l0` then re-sync+deploy (see §2).
 
 ### L1–L5 teardown (in addition to the L0 teardown above)
 ```bash
-export DATABRICKS_AUTH_STORAGE=plaintext; P="fe-vm-classic-stable-9cgeia"
+export DATABRICKS_AUTH_STORAGE=plaintext; P="YOUR_PROFILE"
 databricks serving-endpoints delete acme-valuation -p $P
 for t in injury_risk player_valuation scenario_impact scenario_moves; do
   python3 scripts/dbsql.py "DROP TABLE IF EXISTS acme_sports.demo.$t"; done
@@ -220,7 +220,7 @@ for t in injury_risk player_valuation scenario_impact scenario_moves; do
 
 ### FILE-column showcase teardown (file-column-v1, additive)
 ```bash
-export DATABRICKS_AUTH_STORAGE=plaintext; P="fe-vm-classic-stable-9cgeia"
+export DATABRICKS_AUTH_STORAGE=plaintext; P="YOUR_PROFILE"
 # Single new additive table; references (does not copy) the existing volume PDFs.
 python3 scripts/dbsql.py "DROP TABLE IF EXISTS acme_sports.demo.contract_files"
 ```
@@ -232,7 +232,7 @@ python3 scripts/dbsql.py "DROP TABLE IF EXISTS acme_sports.demo.contract_files"
 
 ### AI TRANSFER ASSISTANT teardown (transfer-assistant-v1, additive)
 ```bash
-export DATABRICKS_AUTH_STORAGE=plaintext; P="fe-vm-classic-stable-9cgeia"
+export DATABRICKS_AUTH_STORAGE=plaintext; P="YOUR_PROFILE"
 # 1) serverless serving endpoint (scale-to-zero)
 databricks serving-endpoints delete acme-transfer-valuation -p $P
 # 2) registered UC model
@@ -254,7 +254,7 @@ python3 scripts/dbsql.py "DROP TABLE IF EXISTS acme_sports.demo.player_kpis"
 
 ### AI PHYSIO / LOAD MANAGER teardown (physio-assistant-v1, additive)
 ```bash
-export DATABRICKS_AUTH_STORAGE=plaintext; P="fe-vm-classic-stable-9cgeia"
+export DATABRICKS_AUTH_STORAGE=plaintext; P="YOUR_PROFILE"
 for t in load_status statsports_sessions whoop_daily; do
   python3 scripts/dbsql.py "DROP TABLE IF EXISTS acme_sports.demo.$t"; done
 # app code reverts with git + redeploy (§2)
@@ -277,7 +277,7 @@ for t in load_status statsports_sessions whoop_daily; do
 
 ### AI OPPOSITION / MATCH-PREP ANALYST teardown (opposition-analyst-v1, additive)
 ```bash
-export DATABRICKS_AUTH_STORAGE=plaintext; P="fe-vm-classic-stable-9cgeia"
+export DATABRICKS_AUTH_STORAGE=plaintext; P="YOUR_PROFILE"
 python3 scripts/dbsql.py "DROP TABLE IF EXISTS acme_sports.demo.opponents"
 # app code reverts with git + redeploy (Section 2)
 ```
@@ -291,7 +291,7 @@ python3 scripts/dbsql.py "DROP TABLE IF EXISTS acme_sports.demo.opponents"
 
 ### AI CONTRACT & FFP/PSR COMPLIANCE AGENT teardown (ffp-agent-v1, additive)
 ```bash
-export DATABRICKS_AUTH_STORAGE=plaintext; P="fe-vm-classic-stable-9cgeia"
+export DATABRICKS_AUTH_STORAGE=plaintext; P="YOUR_PROFILE"
 python3 scripts/dbsql.py "DROP TABLE IF EXISTS acme_sports.demo.contract_economics"
 # app code reverts with git + redeploy (Section 2)
 ```

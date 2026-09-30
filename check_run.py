@@ -14,8 +14,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scr
 import dbsql
 from make_pdf import write_pdf
 
-PROFILE = "fe-vm-classic-stable-9cgeia"
-APP_URL = "https://acme-sports-7474652196525510.aws.databricksapps.com"
+PROFILE = "YOUR_PROFILE"
+APP_URL = "https://acme-sports-WORKSPACE_ID.aws.databricksapps.com"
 CAT, SCH, VOL = "acme_sports", "demo", "documents"
 ENV = {**os.environ, "DATABRICKS_AUTH_STORAGE": "plaintext"}
 results = []

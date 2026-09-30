@@ -7,8 +7,8 @@ Returns final assistant markdown + a list of citation URLs (table vs volume).
 """
 import json, subprocess, os, sys, urllib.request
 
-PROFILE = "fe-vm-classic-stable-9cgeia"
-HOST = "https://fevm-classic-stable-9cgeia.cloud.databricks.com"
+PROFILE = "YOUR_PROFILE"
+HOST = "https://YOUR_WORKSPACE.cloud.databricks.com"
 AGENT_ID = open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".space_id")).read().strip()
 ENV = {**os.environ, "DATABRICKS_AUTH_STORAGE": "plaintext"}
 

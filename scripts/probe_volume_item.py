@@ -2,8 +2,8 @@
 """Discover the correct field name(s) for a volume item under data_sources.volumes."""
 import json, subprocess, os
 
-PROFILE = "fe-vm-classic-stable-9cgeia"
-SPACE_ID = "01f19b59e604108aba34eda9d7e97569"
+PROFILE = "YOUR_PROFILE"
+SPACE_ID = "YOUR_GENIE_SPACE_ID"
 VOL = "acme_sports.demo.documents"
 VOL_PATH = "/Volumes/acme_sports/demo/documents"
 ENV = {**os.environ, "DATABRICKS_AUTH_STORAGE": "plaintext"}

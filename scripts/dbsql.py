@@ -5,12 +5,12 @@ Usage:
   python3 dbsql.py "SELECT 1"
   echo "SELECT 1" | python3 dbsql.py -
   python3 dbsql.py -f path/to/file.sql
-Reads via the databricks CLI profile (fe-vm-classic-stable-9cgeia).
+Reads via the databricks CLI profile (YOUR_PROFILE).
 """
 import json, subprocess, sys, time, os
 
-PROFILE = "fe-vm-classic-stable-9cgeia"
-WAREHOUSE_ID = "84c07276d33bc0a0"
+PROFILE = "YOUR_PROFILE"
+WAREHOUSE_ID = "YOUR_WAREHOUSE_ID"
 ENV = {**os.environ, "DATABRICKS_AUTH_STORAGE": "plaintext"}
 
 

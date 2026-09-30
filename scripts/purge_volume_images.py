@@ -6,8 +6,8 @@ import os, json, subprocess, urllib.request, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import dbsql
 
-PROFILE = "fe-vm-classic-stable-9cgeia"
-HOST = "https://fevm-classic-stable-9cgeia.cloud.databricks.com"
+PROFILE = "YOUR_PROFILE"
+HOST = "https://YOUR_WORKSPACE.cloud.databricks.com"
 ENV = {**os.environ, "DATABRICKS_AUTH_STORAGE": "plaintext"}
 VOL = "/Volumes/acme_sports/demo/clips"
 

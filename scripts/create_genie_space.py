@@ -2,9 +2,9 @@
 """Create the 'Acme Scout' Genie space programmatically from our tuning files."""
 import json, subprocess, os, uuid, sys
 
-PROFILE = "fe-vm-classic-stable-9cgeia"
-WAREHOUSE_ID = "84c07276d33bc0a0"
-PARENT = "/Users/daniel.lacouture@databricks.com"
+PROFILE = "YOUR_PROFILE"
+WAREHOUSE_ID = "YOUR_WAREHOUSE_ID"
+PARENT = "/Users/you@example.com"
 ENV = {**os.environ, "DATABRICKS_AUTH_STORAGE": "plaintext"}
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

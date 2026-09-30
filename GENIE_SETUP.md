@@ -1,7 +1,7 @@
 # Acme Scout — Genie Space setup (M0)
 
-**Workspace:** https://fevm-classic-stable-9cgeia.cloud.databricks.com
-**Warehouse:** Genie-Warehouse (`84c07276d33bc0a0`)
+**Workspace:** https://YOUR_WORKSPACE.cloud.databricks.com
+**Warehouse:** Genie-Warehouse (`YOUR_WAREHOUSE_ID`)
 **Table:** `acme_sports.demo.players`
 **Volume (attach as source):** `acme_sports.demo.documents`
 

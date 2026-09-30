@@ -3,10 +3,10 @@
 # Usage: run_nb.sh <local_py> [run_name]
 set -uo pipefail  # NOT -e: empty result_state greps during polling are expected
 export DATABRICKS_AUTH_STORAGE=plaintext
-P="fe-vm-classic-stable-9cgeia"
+P="YOUR_PROFILE"
 LOCAL="$1"
 NAME="${2:-$(basename "$LOCAL" .py)}"
-DIR="/Users/daniel.lacouture@databricks.com/acme_sports_l0"
+DIR="/Users/you@example.com/acme_sports_l0"
 NB="$DIR/$(basename "$LOCAL" .py)"
 databricks workspace mkdirs "$DIR" -p $P >/dev/null 2>&1 || true
 databricks workspace import "$NB" --file "$LOCAL" --language PYTHON --format SOURCE --overwrite -p $P >/dev/null

@@ -19,8 +19,8 @@ scout note so the Genie Agent can retrieve it at query time.
 """
 import os, json, subprocess, urllib.request, base64, datetime
 
-PROFILE = os.environ.get("DBX_PROFILE", "fe-vm-classic-stable-9cgeia")
-HOST = os.environ.get("DBX_HOST", "https://fevm-classic-stable-9cgeia.cloud.databricks.com")
+PROFILE = os.environ.get("DBX_PROFILE", "YOUR_PROFILE")
+HOST = os.environ.get("DBX_HOST", "https://YOUR_WORKSPACE.cloud.databricks.com")
 TRANSCRIBE_ENDPOINT = os.environ.get("TRANSCRIBE_ENDPOINT", "")  # e.g. "whisper-large-v3"
 VOL_BASE = "/Volumes/acme_sports/demo/documents"
 ENV = {**os.environ, "DATABRICKS_AUTH_STORAGE": "plaintext"}

@@ -8,7 +8,7 @@
 # so owner/admins are preserved. Idempotent.
 set -euo pipefail
 export DATABRICKS_AUTH_STORAGE=plaintext
-P="fe-vm-classic-stable-9cgeia"
+P="YOUR_PROFILE"
 APP_SP="47b731e0-6bf9-4ac4-923c-b93485795a4a"   # app-32gfki acme-sports
 EPID=$(databricks serving-endpoints get acme-transfer-valuation -p "$P" -o json | python3 -c 'import sys,json;print(json.load(sys.stdin)["id"])')
 databricks permissions update serving-endpoints "$EPID" \

@@ -2,7 +2,7 @@
 # MAGIC %md
 # MAGIC # L0 — Lakebase transactional round-trip (de-risk)
 # MAGIC Proves the Lakebase (Provisioned, Public Preview) read/write path on FEVM
-# MAGIC `fevm-classic-stable-9cgeia` **before** any app/UI is built.
+# MAGIC `YOUR_WORKSPACE` **before** any app/UI is built.
 # MAGIC
 # MAGIC Runs on **serverless** (has PyPI access → installs `psycopg2-binary`, which will
 # MAGIC not pip-install locally). Connects with an **OAuth token from the Databricks SDK**

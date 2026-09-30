@@ -2,7 +2,7 @@
 """Download ~12 player photos via the Wikipedia REST summary API -> data/clips/."""
 import os, json, urllib.request, urllib.parse, time
 
-UA = "AcmeSportsDemo/1.0 (daniel.lacouture@databricks.com)"
+UA = "AcmeSportsDemo/1.0 (you@example.com)"
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "clips")
 os.makedirs(OUT, exist_ok=True)
 

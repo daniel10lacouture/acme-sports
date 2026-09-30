@@ -2,7 +2,7 @@
 """FM vision QA over the FINAL headshot crops: confirm single-person head-and-shoulders
 portrait + describe kit (identity is human-verified separately; the model must not name)."""
 import os, json, base64, subprocess, urllib.request
-PROFILE="fe-vm-classic-stable-9cgeia"; HOST="https://fevm-classic-stable-9cgeia.cloud.databricks.com"
+PROFILE="YOUR_PROFILE"; HOST="https://YOUR_WORKSPACE.cloud.databricks.com"
 ENV={**os.environ,"DATABRICKS_AUTH_STORAGE":"plaintext"}; VP="databricks-gpt-5-mini"
 D="app/static/headshots"
 PROMPT=("You are QAing a headshot avatar. Reply ONLY compact JSON: "

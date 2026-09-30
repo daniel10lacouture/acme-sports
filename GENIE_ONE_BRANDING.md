@@ -12,8 +12,8 @@ page — the homepage is still on Databricks defaults. Follow the steps to apply
 - **Brand color:** `#2563EB` (blue — matches the real product app accent). *Alternative:* `#F5A623` amber if you prefer the marketing look.
 - **Logo:** `brand/acme_logo.png` — the **real Acme Sports mark** (amber gradient ring + G), dark-G variant for light backgrounds. For a dark header use `brand/acme_logo_dark.png` (light-G variant). Sourced from acmesports.io.
 - **Welcome markdown:** `brand/genie_one_welcome.md` (paste its contents)
-- **Agent to pin:** **Acme Scout** — `space_id 01f19b59e604108aba34eda9d7e97569`
-  (URL: https://fevm-classic-stable-9cgeia.cloud.databricks.com/genie/rooms/01f19b59e604108aba34eda9d7e97569)
+- **Agent to pin:** **Acme Scout** — `space_id YOUR_GENIE_SPACE_ID`
+  (URL: https://YOUR_WORKSPACE.cloud.databricks.com/genie/rooms/YOUR_GENIE_SPACE_ID)
 
 ## Steps — Appearance (workspace-level, applies to all users)
 1. Top bar → your **username** → **Settings**.

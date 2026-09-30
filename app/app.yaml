@@ -10,7 +10,7 @@ command:
 
 env:
   - name: WAREHOUSE_ID
-    value: "84c07276d33bc0a0"
+    value: "YOUR_WAREHOUSE_ID"
   - name: CATALOG
     value: "acme_sports"
   - name: SCHEMA
@@ -18,7 +18,7 @@ env:
   - name: VOLUME
     value: "documents"
   - name: GENIE_AGENT_ID
-    value: "01f19b59e604108aba34eda9d7e97569"
+    value: "YOUR_GENIE_SPACE_ID"
   # ---- Lakebase (what-if scenarios OLTP + valuation/injury) ----
   - name: LAKEBASE_INSTANCE
     value: "acme-lakebase"

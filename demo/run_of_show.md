@@ -8,7 +8,7 @@ Talk-track condensed from `notebooks/00_demo_flow.py`. Verification: `check_run.
 ## 🃏 One-page cheat card
 
 - **Persona:** you are the **Sporting Director of Arsenal**. Every click is *my* squad, *my* money, *my* film.
-- **App:** `https://acme-sports-7474652196525510.aws.databricksapps.com`
+- **App:** `https://acme-sports-WORKSPACE_ID.aws.databricksapps.com`
 - **Genie One (mobile):** space "Acme Scout" · **Agent mode ON**
 - **Catalog:** `acme_sports.demo` · Volume `documents` · Warehouse `Genie-Warehouse`
 - **Drag-drop asset:** `demo_assets/contract_duarte.pdf` (fresh player, not in the squad)

@@ -19,17 +19,17 @@
 # MAGIC | Images | player clips (extensible to video frames) | Volume `acme_sports.demo.clips` |
 # MAGIC | Reasoning | **Acme Scout** Genie Agent (tables + documents volume) | Genie · Agent mode |
 # MAGIC | Experience | Genie One mobile + custom **Databricks App** | see URLs below |
-# MAGIC | Compute | serverless **Genie-Warehouse** | `84c07276d33bc0a0` |
+# MAGIC | Compute | serverless **Genie-Warehouse** | `YOUR_WAREHOUSE_ID` |
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC ## 0 · Resources (the concrete handles)
 # MAGIC - **Catalog / schema:** `acme_sports.demo`
-# MAGIC - **Warehouse:** Genie-Warehouse (`84c07276d33bc0a0`)
-# MAGIC - **Genie Agent "Acme Scout":** `space_id 01f19b59e604108aba34eda9d7e97569`
-# MAGIC   → https://fevm-classic-stable-9cgeia.cloud.databricks.com/genie/rooms/01f19b59e604108aba34eda9d7e97569
-# MAGIC - **App:** https://acme-sports-7474652196525510.aws.databricksapps.com
+# MAGIC - **Warehouse:** Genie-Warehouse (`YOUR_WAREHOUSE_ID`)
+# MAGIC - **Genie Agent "Acme Scout":** `space_id YOUR_GENIE_SPACE_ID`
+# MAGIC   → https://YOUR_WORKSPACE.cloud.databricks.com/genie/rooms/YOUR_GENIE_SPACE_ID
+# MAGIC - **App:** https://acme-sports-WORKSPACE_ID.aws.databricksapps.com
 # MAGIC - **Volumes:** `/Volumes/acme_sports/demo/documents` (contracts, transcripts, audio) · `/Volumes/acme_sports/demo/clips`
 
 # COMMAND ----------
@@ -142,7 +142,7 @@ for sub in ["contracts", "transcripts", "audio"]:
 # COMMAND ----------
 
 import json, urllib.request
-AGENT_ID = "01f19b59e604108aba34eda9d7e97569"
+AGENT_ID = "YOUR_GENIE_SPACE_ID"
 HOST = "https://" + spark.conf.get("spark.databricks.workspaceUrl")
 # In a notebook, use the notebook's auth token:
 TOK = dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiToken().get()
@@ -172,7 +172,7 @@ print(ask_acme_scout("What is Cristian Mosquera's estimated valuation, and what 
 
 # MAGIC %md
 # MAGIC ## 4 · The app — looks/feels like the real Acme Sports product
-# MAGIC **URL:** https://acme-sports-7474652196525510.aws.databricksapps.com  *(open in a browser signed into this workspace)*
+# MAGIC **URL:** https://acme-sports-WORKSPACE_ID.aws.databricksapps.com  *(open in a browser signed into this workspace)*
 # MAGIC
 # MAGIC Walk the left nav (light product theme):
 # MAGIC - **Home** — greeting, Ask bar with suggested chips, "Pinned for you" (Squad + Scouting summaries), activity feed, GPR donut.

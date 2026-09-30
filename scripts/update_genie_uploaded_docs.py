@@ -4,8 +4,8 @@ voice notes) to the Acme Scout Genie space, plus an instruction telling the agen
 prefer it for anything 'just uploaded / latest / most recent'. Runs with keyring auth."""
 import json, subprocess, os, uuid, sys
 
-PROFILE = "fe-vm-classic-stable-9cgeia"
-SID = "01f19b59e604108aba34eda9d7e97569"
+PROFILE = "YOUR_PROFILE"
+SID = "YOUR_GENIE_SPACE_ID"
 NEW_TABLE = "acme_sports.demo.uploaded_docs"
 NEW_INSTRUCTION = (
     "LIVE UPLOADED DOCUMENTS (uploaded_docs table):\n"

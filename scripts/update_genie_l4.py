@@ -5,8 +5,8 @@ volume, and existing instructions/questions (full-replacement API, so we GET, ex
 and PUT back)."""
 import json, subprocess, os, uuid, sys
 
-PROFILE = "fe-vm-classic-stable-9cgeia"
-SID = "01f19b59e604108aba34eda9d7e97569"
+PROFILE = "YOUR_PROFILE"
+SID = "YOUR_GENIE_SPACE_ID"
 ENV = {**os.environ, "DATABRICKS_AUTH_STORAGE": "plaintext"}
 NEW_TABLES = ["acme_sports.demo.injury_risk", "acme_sports.demo.player_valuation",
               "acme_sports.demo.scenario_impact", "acme_sports.demo.scenario_moves"]

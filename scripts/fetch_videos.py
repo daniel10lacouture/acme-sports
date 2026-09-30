@@ -15,8 +15,8 @@ NOTE (demo-only): scraped social video is fine for THIS internal FEVM demo only
 """
 import os, json, subprocess, urllib.request, urllib.parse, time, sys
 
-PROFILE = "fe-vm-classic-stable-9cgeia"
-HOST = "https://fevm-classic-stable-9cgeia.cloud.databricks.com"
+PROFILE = "YOUR_PROFILE"
+HOST = "https://YOUR_WORKSPACE.cloud.databricks.com"
 ENV = {**os.environ, "DATABRICKS_AUTH_STORAGE": "plaintext"}
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CLIPS = os.path.join(ROOT, "data", "clips")

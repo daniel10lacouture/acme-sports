@@ -12,7 +12,7 @@ import os, sys, json
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "app"))
-os.environ.setdefault("DATABRICKS_PROFILE", "fe-vm-classic-stable-9cgeia")
+os.environ.setdefault("DATABRICKS_PROFILE", "YOUR_PROFILE")
 
 from server import dbx  # noqa: E402
 

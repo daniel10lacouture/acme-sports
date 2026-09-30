@@ -6,8 +6,8 @@
 # MAGIC This is the **run-of-show**. `99_demo_runbook.py` is the deep architecture walkthrough;
 # MAGIC this notebook is what you keep open on the second screen while you present.
 # MAGIC
-# MAGIC **App:** https://acme-sports-7474652196525510.aws.databricksapps.com
-# MAGIC **Genie (Acme Scout):** space `01f19b59e604108aba34eda9d7e97569` · Agent mode
+# MAGIC **App:** https://acme-sports-WORKSPACE_ID.aws.databricksapps.com
+# MAGIC **Genie (Acme Scout):** space `YOUR_GENIE_SPACE_ID` · Agent mode
 # MAGIC **Catalog/Schema/Volume:** `acme_sports.demo` · Volume `documents` · Warehouse `Genie-Warehouse`
 # MAGIC
 # MAGIC > **The persona:** you are the **Sporting Director** of Arsenal. Everything is framed as *my* decisions

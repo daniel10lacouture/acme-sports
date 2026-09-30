@@ -31,7 +31,7 @@ SCENARIOS = {
             {"player_id": "p_alvarez", "action": "buy", "adjusted_wage": 12.0, "adjusted_value": 100.0, "note": "Marquee striker signing"},
             {"player_id": "p_dowman", "action": "promote", "adjusted_wage": 1.5, "adjusted_value": 8.0, "note": "Promote from academy"}]},
     "scn_b_saliba_dowman": {"scenario_id": "scn_b_saliba_dowman", "name": "Scenario B — Sell Saliba, promote Dowman",
-        "created_by": "daniel.lacouture@databricks.com", "created_at": "2026-08-19 16:22:45+00:00",
+        "created_by": "you@example.com", "created_at": "2026-08-19 16:22:45+00:00",
         "base_formation": "4-3-3", "notes": "What-if: fund the rebuild by selling Saliba; promote Dowman from the academy.",
         "moves": [
             {"player_id": "p_saliba", "action": "sell", "adjusted_wage": 0.0, "adjusted_value": 90.0, "note": "Sell at ~est valuation high to fund rebuild"},
