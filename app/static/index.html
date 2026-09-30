@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Acme Sports</title>
+<link rel="icon" href="/static/favicon.png"/>
+<link rel="stylesheet" href="/static/styles.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="/static/acme_logo.png" alt="Acme Sports"/>
+      <div><div class="wm">ACME SPORTS</div><div class="sub">SQUAD INTELLIGENCE</div></div>
+    </div>
+    <div class="navsearch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input type="text" placeholder="Search" id="navSearch" aria-label="Search"/></div>
+    <nav class="nav" id="nav">
+      <div class="navitem active" data-view="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg> Home</div>
+      <div class="navitem" data-view="scouting"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><circle cx="11" cy="11" r="2.5"/><path d="M11 1.5v3M11 17.5v3M1.5 11h3M17.5 11h3"/></svg> Scouting</div>
+      <div class="navitem" data-view="squad"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.6 20a6.4 6.4 0 0 1 12.8 0"/><path d="M16 5.6a3 3 0 0 1 0 5.6"/><path d="M17.8 20a6 6 0 0 0-3-5.2"/></svg> Squad</div>
+      <div class="navitem" data-view="ask"><svg viewBox="0 0 24 24"><path d="M12 3c.6 4.4 1.6 5.4 6 6-4.4.6-5.4 1.6-6 6-.6-4.4-1.6-5.4-6-6 4.4-.6 5.4-1.6 6-6z"/></svg> Ask Acme AI</div>
+      <div class="navitem" data-view="clips"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.2-4.2"/><path d="M8.6 8l4 2.5-4 2.5z"/></svg> Clip Search</div>
+      <div class="navitem" data-view="agents"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.6"/><circle cx="5" cy="6" r="1.7"/><circle cx="19" cy="6" r="1.7"/><circle cx="5" cy="18" r="1.7"/><circle cx="19" cy="18" r="1.7"/><path d="M6.4 7.1l3.7 3.4M17.6 7.1l-3.7 3.4M6.4 16.9l3.7-3.4M17.6 16.9l-3.7-3.4"/></svg> Acme Agents <span class="tag">AI</span></div>
+    </nav>
+    <div class="foot"><div class="avatar"><img src="/static/user.jpg" alt="Daniel Lacouture" onerror="this.remove();this.parentNode.textContent='DL'"></div><div><div class="who">Daniel Lacouture</div><div class="role">Sporting Director</div></div></div>
+  </aside>
+
+  <main class="main"><div class="wrap">
+
+    <!-- ===== HOME ===== -->
+    <section class="view active" id="view-home">
+      <div class="home-grid">
+        <div class="home-main">
+          <div class="hd hd-home"><h1>Good afternoon, <span class="accent">Daniel</span></h1></div>
+          <div class="homeask">
+            <div class="homeask-in"><span class="ha-ic"><svg viewBox="0 0 24 24"><path d="M12 3c.6 4.4 1.6 5.4 6 6-4.4.6-5.4 1.6-6 6-.6-4.4-1.6-5.4-6-6 4.4-.6 5.4-1.6 6-6z"/></svg></span><input id="homeAsk" placeholder="Ask me anything…"/></div>
+            <div class="chips" id="homeChips"></div>
+          </div>
+          <div class="updates-h"><h3>Updates</h3>
+            <div class="upd-ctrl"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span class="upd-all">All <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div></div>
+          <div class="feed-sub">PREVIOUS</div>
+          <div class="feed" id="feed"></div>
+        </div>
+        <aside class="home-rail">
+          <div class="rail-h"><span>Pinned for you</span><span class="rail-date" id="railDate"></span></div>
+          <div class="card pin-card" id="pinnedSquad"></div>
+          <div class="card pin-card" id="pinnedScouting"></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== SCOUTING ===== -->
+    <section class="view" id="view-scouting">
+      <div class="hd"><h1>Scouting</h1><p>Shortlists, boards and scout reports.</p></div>
+      <div class="tabs" id="scoutTabs">
+        <div class="tab active" data-sub="watchlists">Watchlists</div>
+        <div class="tab" data-sub="boards">Boards <span class="soon">SOON</span></div>
+        <div class="tab" data-sub="shadow">Shadow Team <span class="soon">SOON</span></div>
+        <div class="tab" data-sub="reports">Scout Reports</div>
+      </div>
+      <div class="subview active" id="sub-watchlists">
+        <div class="chips" id="watchFilters" style="margin:0 0 16px"></div>
+        <div class="tablewrap"><table><thead><tr><th>Player</th><th>Club</th><th>Pos</th><th>Country</th><th class="right">GPR</th><th>Lists</th><th class="right">Mo. Left</th></tr></thead><tbody id="watchBody"></tbody></table></div>
+      </div>
+      <div class="subview" id="sub-boards"></div>
+      <div class="subview" id="sub-shadow"></div>
+      <div class="subview" id="sub-reports">
+        <div class="uploadcard">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
+          <div style="flex:1">
+            <h3>Record a voice scout note <span class="pill green" style="vertical-align:middle">LIVE</span></h3>
+            <p>Speak your report — it's transcribed live and saved to the Genie Agent's <code>documents/transcripts/</code> volume, instantly answerable.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:520px">
+              <div class="field"><label>Player</label><select id="audioPlayer"></select></div>
+              <div class="field"><label>Scout name</label><input id="audioScout" value="Daniel Lacouture (voice memo)"/></div>
+            </div>
+            <div class="row-actions"><button class="btn rec" id="recBtn">● Record note</button><button class="btn ghost" id="audioUploadBtn">Upload audio file</button><input type="file" id="audioFile" accept="audio/*" hidden/></div>
+            <div class="transcript-live" id="liveTranscript">Transcript will appear here…</div>
+            <div class="status" id="audioStatus"></div>
+          </div>
+        </div>
+        <div class="section-h" style="margin-top:8px">Recent scout reports</div>
+        <div class="tablewrap"><table><thead><tr><th>Player</th><th>Scout</th><th>Date</th><th>Status</th><th>Summary</th></tr></thead><tbody id="reportsBody"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- ===== SQUAD ===== -->
+    <section class="view" id="view-squad">
+      <div class="hd"><h1>Squad</h1><p>Planning, contracts and financials for your first team and academy.</p></div>
+      <div class="kpirow" id="squadKpis" style="margin-bottom:20px"></div>
+      <div class="tabs" id="squadTabs">
+        <div class="tab active" data-sub="planning">Planning</div>
+        <div class="tab" data-sub="contracts">Contracts</div>
+        <div class="tab" data-sub="financials">Financials <span class="soon">SOON</span></div>
+        <div class="tab" data-sub="analysis">Analysis <span class="soon">SOON</span></div>
+      </div>
+      <div class="subview active" id="sub-planning">
+        <div class="scenariorow" id="scenarioRow"></div>
+        <div id="scenarioImpact"></div>
+        <div class="pitch"><div class="center"></div><div class="lines" id="pitch"></div></div>
+        <div id="scenarioCompare"></div>
+        <div id="availCard"></div>
+        <div class="section-h">First team</div>
+        <div class="tablewrap"><table><thead><tr><th>Pos</th><th>Name</th><th class="right">Age</th><th class="right">GPR</th><th class="right">Min</th><th class="right">Wage/yr</th><th class="right">GPV</th><th class="right">Est. Valuation</th><th class="right">Mo. Left</th></tr></thead><tbody id="ftBody"></tbody></table></div>
+        <div class="section-h">Academy</div>
+        <div class="tablewrap"><table><thead><tr><th>Name</th><th>Pos</th><th class="right">Age</th><th class="right">GPR</th><th>Readiness</th><th>Status</th></tr></thead><tbody id="acadBody"></tbody></table></div>
+      </div>
+      <div class="subview" id="sub-contracts">
+        <div class="uploadcard">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0l-4 4m4-4l4 4M4 20h16"/></svg></div>
+          <div style="flex:1">
+            <h3>Upload a contract PDF <span class="pill green" style="vertical-align:middle">LIVE</span></h3>
+            <p>Drops into <code>documents/contracts/</code>; <code>ai_extract</code> reads the end date &amp; release clause. Genie can cite it immediately.</p>
+            <div class="row-actions"><button class="btn" id="contractBtn">Choose PDF</button><span class="muted" id="contractHint" style="font-size:12px">PDF, up to ~10&nbsp;MB</span><input type="file" id="contractFile" accept="application/pdf" hidden/></div>
+            <div class="status" id="contractStatus"></div>
+          </div>
+        </div>
+        <div id="contractResult" class="contract-result"></div>
+        <div class="tablewrap"><table><thead><tr><th>Player</th><th class="right">Age</th><th>Tier</th><th>Contract End</th><th class="right">Contract</th><th>Transfer</th><th>Last Updated</th></tr></thead><tbody id="contractsBody"></tbody></table></div>
+      </div>
+      <div class="subview" id="sub-financials"></div>
+      <div class="subview" id="sub-analysis"></div>
+    </section>
+
+    <!-- ===== ASK (live Genie agent — Genie One style) ===== -->
+    <section class="view" id="view-ask">
+      <div class="gask-hero" id="gaskHero">
+        <div class="gask-mark"><img src="/static/acme_logo.png" alt="Acme"/></div>
+        <h1 class="gask-title">What can I help you find?</h1>
+        <div class="gask-box">
+          <div class="gask-ph" id="gaskPh"><span id="gaskPhText"></span><span class="gask-tab">Tab</span></div>
+          <input id="askInput" class="gask-input" autocomplete="off" spellcheck="false"/>
+          <button class="gask-send" id="askBtn" aria-label="Ask"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="gask-chips" id="askSuggest"></div>
+      </div>
+      <div id="askResult"></div>
+    </section>
+
+    <!-- ===== CLIP SEARCH ===== -->
+    <section class="view" id="view-clips">
+      <div class="hd"><h1>Scouting Clip Search</h1><p>Semantic search over scouting <b>video</b> — an FM vision model captions every sampled frame, embedded for search. <span class="muted">A name resolves to that player; a description matches by scene.</span></p></div>
+      <div class="askbar"><input id="clipInput" placeholder="Search a player or scene — “Vini Jr”, “Raphinha”, “goal celebration”…"/><button class="askbtn" id="clipBtn">Search</button></div>
+      <div id="clipResults" style="margin-top:20px"></div>
+    </section>
+
+    <!-- ===== ACME AGENTS (consolidated: Transfer / Physio / Nutrition / Coach / Financial) ===== -->
+    <section class="view" id="view-agents">
+      <div class="hd"><h1>Acme Agents</h1><p>Specialist AI agents across recruitment, performance, medical, coaching and finance — on your governed squad data.</p></div>
+      <div class="tabs" id="agentTabs">
+        <div class="tab active" data-sub="physio">AI Physio</div>
+        <div class="tab" data-sub="nutrition">AI Nutrition</div>
+        <div class="tab" data-sub="coach">AI Coach Assistant</div>
+        <div class="tab" data-sub="financial">AI Financial Analyst</div>
+        <div class="tab" data-sub="transfer">AI Transfer</div>
+      </div>
+      <div class="subview" id="sub-transfer">
+        <div class="agentbar"><h2>AI Transfer Assistant</h2><p>Interactive, position-specific valuation — adjust the KPIs that drive value and watch the price recompute, explained factor by factor.</p></div>
+      <div class="tf-picker"><label>Player</label><select id="tfPlayer"></select>
+        <span class="tf-group" id="tfGroup"></span>
+        <span class="tf-src" id="tfSource"></span></div>
+      <div class="tf-grid">
+        <div class="card tf-controls">
+          <div class="card-h"><div><h3>Performance inputs</h3><div class="sub">Drag to model a different KPI profile — value updates live</div></div>
+            <button class="btn ghost tf-reset" id="tfReset">Reset to actual</button></div>
+          <div id="tfUniversal" class="tf-sliders"></div>
+          <div class="tf-poshdr" id="tfPosHdr"></div>
+          <div id="tfPosition" class="tf-sliders"></div>
+        </div>
+        <div class="card tf-output">
+          <div class="tf-valuebox"><div class="tf-vlabel">MODELLED VALUE</div>
+            <div class="tf-value" id="tfValue">—</div>
+            <div class="tf-vsub" id="tfValueSub"></div></div>
+          <div class="tf-bridge-h">How the value is built <span class="muted">base + each driver vs a peer reference</span></div>
+          <div class="tf-bridge" id="tfBridge"></div>
+          <div class="tf-actions"><button class="askbtn" id="tfRecompute">Recompute on Model Serving</button></div>
+          <div class="tf-note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+            <div><b>Calibrated / illustrative model</b> tied to plausible market ranges, served on <b>Model Serving</b> (<code>acme-transfer-valuation</code>). KPIs are synthetic, Opta/StatsBomb-shaped — the live feed is a one-config swap. <b>Production path:</b> AutoML/regression trained on historical transfer fees.</div></div>
+        </div>
+      </div>
+      </div>
+      <div class="subview active" id="sub-physio">
+        <div class="agentbar"><h2>AI Physio &amp; Load Manager</h2><p>Minutes management from wearable + GPS load — WHOOP recovery · STATSports GPS · ACWR workload · injury-risk fusion.</p></div>
+      <div class="physio-strip" id="physioStrip"></div>
+      <div class="physio-grid">
+        <div class="card physio-list"><div class="card-h"><div><h3>Squad load board</h3><div class="sub">Next-fixture minutes recommendation · most at-risk first</div></div></div>
+          <div class="tablewrap"><table id="physioTable"></table></div></div>
+        <div id="physioDetail" class="card physio-detail"><div class="physio-empty">Select a player to see load, recovery and the AI physio recommendation.</div></div>
+      </div>
+        <div class="datasources"><span class="ds-l">Data sources</span><span class="ds-chip">WHOOP</span><span class="ds-chip">STATSports</span><span class="ds-chip">Oura</span><span class="ds-note">Wearable partners · synthetic, schema-representative feed · third-party trademarks shown for an internal demo only</span></div>
+      </div>
+      <div class="subview" id="sub-nutrition">
+        <div class="agentbar"><h2>AI Nutrition Assistant</h2><p>Tailored fuelling from load &amp; recovery — distance · sleep · WHOOP recovery · a voice note → an FM-generated diet plan.</p></div>
+      <div class="tf-picker"><label>Player</label><select id="ntPlayer"></select>
+        <span class="tf-group" id="ntGroup"></span>
+        <span class="tf-src" id="ntSource"></span></div>
+      <div class="nt-grid">
+        <div class="card nt-inputs">
+          <div class="card-h"><div><h3>Inputs</h3><div class="sub">Live load &amp; recovery + an optional voice note from the player/nutritionist</div></div></div>
+          <div class="nt-metrics" id="ntMetrics"></div>
+          <div class="nt-voice">
+            <div class="nt-voice-h"><svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg> Voice note <span class="pill green">reuses voice pipeline</span></div>
+            <div class="row-actions"><button class="btn rec" id="ntRecBtn">● Record note</button><span class="muted" style="font-size:12px">or type dietary context below</span></div>
+            <textarea id="ntNote" class="nt-note" placeholder="e.g. “Reported low energy in the last block, prefers rice over pasta, lactose intolerant, big match Sunday…”"></textarea>
+          </div>
+          <button class="askbtn nt-gen" id="ntGenBtn">Generate fuelling plan</button>
+        </div>
+        <div class="card nt-output" id="ntOutput"><div class="nt-empty">Pick a player and generate a plan — grounded in their load, sleep and recovery.</div></div>
+      </div>
+      <div class="datasources"><span class="ds-l">Data sources</span><span class="ds-chip">WHOOP</span><span class="ds-chip">STATSports</span><span class="ds-chip">Oura</span><span class="ds-note">Wearable partners · synthetic, schema-representative feed · third-party trademarks shown for an internal demo only</span></div>
+      <div class="tf-note" style="max-width:920px"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+        <div>Plan generated live by <b>ai_query</b> (<code>databricks-gpt-5-mini</code>) grounded in the player's own load/sleep/recovery + the voice note. Metrics are synthetic (physio feed) — a one-config swap to live WHOOP/STATSports. Voice capture reuses the app's Web Speech pipeline.</div></div>
+      </div>
+      <div class="subview" id="sub-coach">
+        <div class="agentbar"><h2>AI Coach Assistant</h2><p>Match-prep and opponent analysis for the coaching staff — event + tracking data (Opta/StatsBomb/SkillCorner-shaped) → tactical brief with clip citations.</p></div>
+      <div class="op-picker" id="opPicker"></div>
+      <div id="opMeta"></div>
+      <div id="opReport"><div class="op-empty">Select an upcoming opponent to generate a match-prep brief with scouting-clip citations.</div></div>
+      <div class="tf-note" style="max-width:940px"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+        <div>Report generated live by <b>ai_query</b> (<code>databricks-gpt-5-mini</code>) grounded in the opponent's event/tracking metrics; <b>clip citations reuse the Clip Search resolver</b>. Opponent data is synthetic, provider-shaped — a one-config swap to a live Opta/StatsBomb/SkillCorner feed.</div></div>
+      </div>
+      <div class="subview" id="sub-financial">
+        <div class="agentbar"><h2>AI Financial Analyst</h2><p>Board-level financial analysis for the CFO &amp; finance function — wage-bill &amp; amortization from real contracts, UEFA squad-cost ratio, PSR headroom, and risk flags.</p></div>
+      <div id="ffpVerdict"></div>
+      <div class="kpirow" id="ffpKpis" style="margin-bottom:20px"></div>
+      <div class="ffp-grid">
+        <div class="card"><div class="card-h"><div><h3>UEFA squad-cost ratio</h3><div class="sub">Wages + amortization + agent fees ÷ revenue · cap 70%</div></div></div>
+          <div id="ffpGauge"></div>
+          <div id="ffpPsr"></div>
+        </div>
+        <div class="card"><div class="card-h"><div><h3>Compliance risk flags</h3><div class="sub">What moves the numbers</div></div></div>
+          <div id="ffpFlags"></div></div>
+      </div>
+      <div id="ffpScenarios"></div>
+      <div class="section-h">Contract economics — first team</div>
+      <div class="tablewrap"><table><thead><tr><th>Player</th><th class="right">Acq. fee</th><th class="right">Wage/yr</th><th class="right">Amort./yr</th><th class="right">Residual</th><th class="right">Yrs left</th><th class="right">Squad cost/yr</th></tr></thead><tbody id="ffpBody"></tbody></table></div>
+      <div class="section-h">Governed contract evidence <span class="muted" style="text-transform:none;font-weight:500">— FILE-column table · <code>ai_parse_document</code> + <code>ai_query</code></span></div>
+      <div id="ffpEvidence" class="ffp-evidence"></div>
+      <div class="tf-note" style="max-width:940px"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+        <div>Wages &amp; contract dates are real demo data; the exec verdict is generated live by <b>ai_query</b> (<code>databricks-gpt-5-mini</code>). Revenue/opex and acquisition fees are <b>illustrative</b> — a one-config swap to the finance ledger; the model is fully transparent (every figure derived).</div></div>
+      </div>
+    </section>
+
+  </div></main>
+</div>
+<div class="explainer" id="explainer" hidden>
+  <div class="explainer-pop" id="explainerPop" hidden>
+    <div class="ep-h"><span class="dbx-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#FF3621"><polygon points="2,11 16,4 30,11 16,18"/><polygon points="2,16 16,9 30,16 16,23" opacity=".7"/><polygon points="2,21 16,14 30,21 16,28" opacity=".45"/></g></svg></span>
+      <span class="ep-title">How this works</span><button class="ep-x" id="explainerX" aria-label="Close">×</button></div>
+    <div id="epBody"></div>
+  </div>
+  <button class="explainer-btn" id="explainerBtn"><span class="dbx-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#FF3621"><polygon points="2,11 16,4 30,11 16,18"/><polygon points="2,16 16,9 30,16 16,23" opacity=".7"/><polygon points="2,21 16,14 30,21 16,28" opacity=".45"/></g></svg></span> How this works</button>
+</div>
+<div class="modal-bg" id="modal"><div class="pcard" id="pcard"></div></div>
+<div class="modal-bg" id="scenModal"><div class="scenbuilder" id="scenBuilder"></div></div>
+<div class="modal-bg" id="confirmModal"><div class="confirmcard" id="confirmCard"></div></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

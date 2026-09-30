@@ -1,0 +1,31 @@
+command:
+  - "python"
+  - "-m"
+  - "uvicorn"
+  - "app:app"
+  - "--host"
+  - "0.0.0.0"
+  - "--port"
+  - "8000"
+
+env:
+  - name: WAREHOUSE_ID
+    value: "84c07276d33bc0a0"
+  - name: CATALOG
+    value: "acme_sports"
+  - name: SCHEMA
+    value: "demo"
+  - name: VOLUME
+    value: "documents"
+  - name: GENIE_AGENT_ID
+    value: "01f19b59e604108aba34eda9d7e97569"
+  # ---- Lakebase (what-if scenarios OLTP + valuation/injury) ----
+  - name: LAKEBASE_INSTANCE
+    value: "acme-lakebase"
+  - name: LAKEBASE_DB
+    value: "acme"
+  - name: LAKEBASE_SCHEMA
+    value: "acme_app"
+  # VALUATION_ENDPOINT / INJURY set in L2/L3 once model serving endpoints exist.
+  # TRANSCRIBE_ENDPOINT: set to a Whisper Model Serving endpoint to enable server-side
+  # transcription. Unset -> app uses browser Web Speech API transcript (see M3).

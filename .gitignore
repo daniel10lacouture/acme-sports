@@ -1,0 +1,9 @@
+# Regenerable local artifacts — NOT part of the known-good snapshot
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Headshot raw candidates (regenerable via scripts/fetch_headshots.py; finals live in app/static/headshots/)
+data/headshots_candidates/
+app/static/headshots/_qa.json

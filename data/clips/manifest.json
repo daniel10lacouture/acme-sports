@@ -1,0 +1,210 @@
+[
+ {
+  "clip_id": "ext_ldiaz_1",
+  "player_id": "ext_ldiaz",
+  "name": "Luis D\u00edaz",
+  "club": "Bayern Munich",
+  "file": "ext_ldiaz_1.jpg",
+  "bytes": 64932
+ },
+ {
+  "clip_id": "ext_ldiaz_2",
+  "player_id": "ext_ldiaz",
+  "name": "Luis D\u00edaz",
+  "club": "Bayern Munich",
+  "file": "ext_ldiaz_2.jpg",
+  "bytes": 78779
+ },
+ {
+  "clip_id": "ext_ldiaz_3",
+  "player_id": "ext_ldiaz",
+  "name": "Luis D\u00edaz",
+  "club": "Bayern Munich",
+  "file": "ext_ldiaz_3.jpg",
+  "bytes": 72132
+ },
+ {
+  "clip_id": "ext_ldiaz_4",
+  "player_id": "ext_ldiaz",
+  "name": "Luis D\u00edaz",
+  "club": "Bayern Munich",
+  "file": "ext_ldiaz_4.jpg",
+  "bytes": 57271
+ },
+ {
+  "clip_id": "p_saka_1",
+  "player_id": "p_saka",
+  "name": "Bukayo Saka",
+  "club": "Arsenal",
+  "file": "p_saka_1.jpg",
+  "bytes": 38748
+ },
+ {
+  "clip_id": "p_saka_2",
+  "player_id": "p_saka",
+  "name": "Bukayo Saka",
+  "club": "Arsenal",
+  "file": "p_saka_2.jpg",
+  "bytes": 74717
+ },
+ {
+  "clip_id": "p_saka_3",
+  "player_id": "p_saka",
+  "name": "Bukayo Saka",
+  "club": "Arsenal",
+  "file": "p_saka_3.jpg",
+  "bytes": 81320
+ },
+ {
+  "clip_id": "p_saka_4",
+  "player_id": "p_saka",
+  "name": "Bukayo Saka",
+  "club": "Arsenal",
+  "file": "p_saka_4.jpg",
+  "bytes": 44395
+ },
+ {
+  "clip_id": "p_barcola_1",
+  "player_id": "p_barcola",
+  "name": "Bradley Barcola",
+  "club": "Paris SG",
+  "file": "p_barcola_1.png",
+  "bytes": 239704
+ },
+ {
+  "clip_id": "p_barcola_2",
+  "player_id": "p_barcola",
+  "name": "Bradley Barcola",
+  "club": "Paris SG",
+  "file": "p_barcola_2.jpg",
+  "bytes": 46908
+ },
+ {
+  "clip_id": "p_barcola_3",
+  "player_id": "p_barcola",
+  "name": "Bradley Barcola",
+  "club": "Paris SG",
+  "file": "p_barcola_3.jpg",
+  "bytes": 43654
+ },
+ {
+  "clip_id": "p_barcola_4",
+  "player_id": "p_barcola",
+  "name": "Bradley Barcola",
+  "club": "Paris SG",
+  "file": "p_barcola_4.jpg",
+  "bytes": 131297
+ },
+ {
+  "clip_id": "p_roque_1",
+  "player_id": "p_roque",
+  "name": "Vitor Roque",
+  "club": "Palmeiras",
+  "file": "p_roque_1.jpg",
+  "bytes": 49514
+ },
+ {
+  "clip_id": "p_roque_2",
+  "player_id": "p_roque",
+  "name": "Vitor Roque",
+  "club": "Palmeiras",
+  "file": "p_roque_2.jpg",
+  "bytes": 168119
+ },
+ {
+  "clip_id": "p_roque_3",
+  "player_id": "p_roque",
+  "name": "Vitor Roque",
+  "club": "Palmeiras",
+  "file": "p_roque_3.jpg",
+  "bytes": 78105
+ },
+ {
+  "clip_id": "p_saliba_1",
+  "player_id": "p_saliba",
+  "name": "William Saliba",
+  "club": "Arsenal",
+  "file": "p_saliba_1.jpg",
+  "bytes": 81022
+ },
+ {
+  "clip_id": "p_saliba_2",
+  "player_id": "p_saliba",
+  "name": "William Saliba",
+  "club": "Arsenal",
+  "file": "p_saliba_2.jpg",
+  "bytes": 92343
+ },
+ {
+  "clip_id": "p_saliba_3",
+  "player_id": "p_saliba",
+  "name": "William Saliba",
+  "club": "Arsenal",
+  "file": "p_saliba_3.jpg",
+  "bytes": 56360
+ },
+ {
+  "clip_id": "p_rice_1",
+  "player_id": "p_rice",
+  "name": "Declan Rice",
+  "club": "Arsenal",
+  "file": "p_rice.jpg",
+  "bytes": 2604985
+ },
+ {
+  "clip_id": "p_odegaard_1",
+  "player_id": "p_odegaard",
+  "name": "Martin \u00d8degaard",
+  "club": "Arsenal",
+  "file": "p_odegaard.jpg",
+  "bytes": 3192809
+ },
+ {
+  "clip_id": "p_raya_1",
+  "player_id": "p_raya",
+  "name": "David Raya",
+  "club": "Arsenal",
+  "file": "p_raya.jpg",
+  "bytes": 1722941
+ },
+ {
+  "clip_id": "p_olise_1",
+  "player_id": "p_olise",
+  "name": "Michael Olise",
+  "club": "Bayern Munich",
+  "file": "p_olise.jpg",
+  "bytes": 3419383
+ },
+ {
+  "clip_id": "p_alvarez_1",
+  "player_id": "p_alvarez",
+  "name": "Juli\u00e1n \u00c1lvarez",
+  "club": "Atl\u00e9tico Madrid",
+  "file": "p_alvarez.jpg",
+  "bytes": 2114296
+ },
+ {
+  "clip_id": "p_tonali_1",
+  "player_id": "p_tonali",
+  "name": "Sandro Tonali",
+  "club": "Newcastle",
+  "file": "p_tonali.jpg",
+  "bytes": 2389865
+ },
+ {
+  "clip_id": "ext_rodri_1",
+  "player_id": "ext_rodri",
+  "name": "Rodri",
+  "club": "Manchester City",
+  "file": "ext_rodri_1.jpg",
+  "bytes": 69313
+ },
+ {
+  "clip_id": "ext_rodri_2",
+  "player_id": "ext_rodri",
+  "name": "Rodri",
+  "club": "Manchester City",
+  "file": "ext_rodri_2.jpg",
+  "bytes": 1221472
+ }
+]

@@ -1,0 +1,302 @@
+<title>Acme Sports — Run of Show</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --bg:#F8F9FB; --card:#FFFFFF; --ink:#0B0C0F; --muted:#5B6472; --line:#E6E9EF;
+    --blue:#2563EB; --blue-soft:#EAF1FE; --green:#16A34A; --green-soft:#E7F6EC;
+    --amber:#F5A623; --amber-soft:#FDF3E0; --red:#DC2626; --red-soft:#FDECEC;
+    --shadow:0 1px 3px rgba(16,24,40,.06),0 1px 2px rgba(16,24,40,.04);
+    --radius:12px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;padding:0 0 80px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  header.hero{background:linear-gradient(180deg,#0B0C0F 0%,#14161C 100%);color:#fff;padding:26px 0 24px;margin-bottom:22px}
+  header.hero .wrap{display:flex;align-items:center;gap:16px}
+  .glogo{width:44px;height:44px;border-radius:50%;background:var(--amber);color:#0B0C0F;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px;flex:none}
+  .wm{font-weight:800;letter-spacing:.14em;font-size:19px}
+  .sub{color:#9AA3B2;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-top:2px}
+  .hchip{margin-left:auto;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+    border-radius:999px;padding:6px 14px;font-size:12.5px;color:#E6E9EF}
+  h1,h2,h3{line-height:1.2}
+  h2.sect{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:18px 20px;margin:14px 0}
+  .cheat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:0;overflow:hidden}
+  .cheat .ch-h{background:var(--blue);color:#fff;padding:12px 20px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+  .cheat .ch-h .t{font-size:12px;font-weight:600;opacity:.9}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .grid2>div{padding:16px 20px}
+  .grid2>div:first-child{border-right:1px solid var(--line)}
+  .kv{font-size:13.5px;margin:4px 0;color:var(--muted)}
+  .kv b{color:var(--ink)}
+  .qs{counter-reset:q;margin:6px 0 0;padding:0;list-style:none}
+  .qs li{padding:7px 0 7px 30px;position:relative;border-top:1px dashed var(--line);font-size:13.5px}
+  .qs li:first-child{border-top:0}
+  .qs li:before{counter-increment:q;content:counter(q);position:absolute;left:0;top:7px;
+    width:20px;height:20px;background:var(--blue-soft);color:var(--blue);border-radius:50%;
+    font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  code,.mono{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:12.5px}
+  .q code{background:var(--blue-soft);color:#12336b;padding:2px 6px;border-radius:5px}
+  .beat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+  .beat .bh{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line)}
+  .bnum{width:30px;height:30px;border-radius:8px;background:var(--ink);color:#fff;display:flex;
+    align-items:center;justify-content:center;font-weight:700;font-size:14px;flex:none}
+  .bh .bt{font-size:16.5px;font-weight:700}
+  .bh .loc{font-size:12px;color:var(--muted);margin-top:1px}
+  .bh .time{margin-left:auto;background:var(--green-soft);color:var(--green);font-weight:700;
+    border-radius:999px;padding:5px 12px;font-size:12.5px;white-space:nowrap}
+  .bh .time.hero{background:var(--amber-soft);color:#b5730a}
+  .bb{padding:6px 20px 18px}
+  .row{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line);align-items:flex-start}
+  .row:first-child{border-top:0}
+  .tag{flex:none;width:74px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+  .row .body{flex:1}
+  .hook{color:#12336b;font-style:italic}
+  .sowhat b{color:var(--ink)}
+  .fallback{background:var(--red-soft);border-left:3px solid var(--red);border-radius:6px;padding:8px 12px;font-size:13px;color:#7a1d1d}
+  .flag{background:var(--amber-soft);border-left:3px solid var(--amber);border-radius:6px;padding:8px 12px;font-size:13px;color:#7a4d05}
+  .pill{display:inline-block;background:var(--blue-soft);color:var(--blue);border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0}
+  .pill.g{background:var(--green-soft);color:var(--green)}
+  .pill.a{background:var(--amber-soft);color:#b5730a}
+  .pill.r{background:var(--red-soft);color:var(--red)}
+  .lead{font-size:15.5px;color:#2b313c}
+  table.status{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+  table.status th,table.status td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.status th{background:#F1F3F7;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  table.status tr:last-child td{border-bottom:0}
+  .st-live{color:var(--green);font-weight:700}
+  .st-syn{color:#b5730a;font-weight:700}
+  .st-gap{color:var(--red);font-weight:700}
+  .note{color:var(--muted);font-size:13px}
+  @media(max-width:720px){.grid2{grid-template-columns:1fr}.grid2>div:first-child{border-right:0;border-bottom:1px solid var(--line)}}
+  @media print{body{background:#fff}.beat,.card,.cheat,table.status{box-shadow:none}header.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}.beat{break-inside:avoid}}
+</style>
+
+<header class="hero"><div class="wrap">
+  <div class="glogo">G</div>
+  <div><div class="wm">ACME SPORTS</div><div class="sub">On-Site Run of Show · Sporting-Director Demo</div></div>
+  <div class="hchip">~35 min · target 30–40</div>
+</div></header>
+
+<div class="wrap">
+
+<!-- ================= CHEAT CARD ================= -->
+<div class="cheat">
+  <div class="ch-h"><span>ONE-PAGE CHEAT CARD</span><span class="t">keep this on your second screen</span></div>
+  <div class="grid2">
+    <div>
+      <div class="kv"><b>Persona:</b> you are the <b>Sporting Director of Arsenal</b>. Every click is <i>my</i> squad, <i>my</i> money, <i>my</i> film.</div>
+      <div class="kv"><b>App:</b> <span class="mono">acme-sports-7474652196525510.aws.databricksapps.com</span></div>
+      <div class="kv"><b>Genie One (mobile):</b> space "Acme Scout" · <b>Agent mode ON</b></div>
+      <div class="kv"><b>Catalog:</b> <span class="mono">acme_sports.demo</span> · Volume <span class="mono">documents</span> · WH <span class="mono">Genie-Warehouse</span></div>
+      <div class="kv"><b>Drag-drop asset:</b> <span class="mono">demo_assets/contract_duarte.pdf</span> (fresh player, not in squad)</div>
+      <div class="kv"><b>Voice script:</b> <span class="mono">demo_assets/scout_note_duarte_script.txt</span></div>
+      <div class="kv" style="margin-top:8px"><b>Arc:</b> Home → <span style="color:#b5730a">Genie One hero</span> → ingest (PDF+voice) → scout agent → Clip Search → 5 assistants → <b>FFP</b> → close</div>
+    </div>
+    <div>
+      <div style="font-weight:700;font-size:12.5px;margin-bottom:2px">The 4 Genie questions (escalation order)</div>
+      <ol class="qs">
+        <li>Which first-team players have <b>fewer than 18 months</b> left on their contract? <span class="note">(structured)</span></li>
+        <li>What is <b>Mateo Duarte's</b> release clause and when does his contract end? <span class="note">(reads the just-uploaded PDF — the hero)</span></li>
+        <li>What is our valuation of <b>Cristian Mosquera</b> and what does the scout report say? <span class="note">(BLENDED + cited)</span></li>
+        <li>In <b>Scenario B</b>, what's our squad value and who is highest injury risk? <span class="note">(fused models)</span></li>
+      </ol>
+      <div style="font-weight:700;font-size:12.5px;margin:12px 0 4px">Three rules if it wobbles</div>
+      <div class="kv">① Genie returns nothing on a doc Q → <b>Agent mode is off</b>, toggle it on.</div>
+      <div class="kv">② App feels cold → click <b>Home</b> once first (scale-to-zero warm-up).</div>
+      <div class="kv">③ Never <i>create a new scenario then ask Genie about it</i> — ask about <b>Scenario B</b> (see gap note).</div>
+    </div>
+  </div>
+</div>
+
+<div class="flag" style="margin-top:14px"><b>Say the honesty line once, early, and you own the room:</b> "The app is live and deployed; the data's in real Delta tables and a real governed Volume. Some feeder data — wearables, opponent stats, transfer-fee history — is <b>synthetic but provider-shaped</b>, and every one is a <b>one-config swap</b> to the live feed. The only thing not deployed here is server-side transcription — one env var away. I'll flag each as we go." Verification harness <b>check_run.py = 53/53 PASS</b>.</div>
+
+<!-- ================= BEATS ================= -->
+<h2 class="sect">The run, beat by beat</h2>
+
+<!-- BEAT 0 -->
+<div class="beat"><div class="bh"><div class="bnum">0</div>
+  <div><div class="bt">Cold open — it looks like their product</div><div class="loc">App ▸ Home</div></div>
+  <div class="time">2 min</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Click</div><div class="body">Open the app on <b>Home</b>. Let it sit for a beat. Point at the GPR distribution donut, the pinned Squad + Scouting summaries, the activity feed.</div></div>
+    <div class="row"><div class="tag">Hook</div><div class="body hook">"This is the front door my staff would actually log into — everything I know about my squad, live from the lakehouse."</div></div>
+    <div class="row"><div class="tag">So what</div><div class="body sowhat">Frames the whole demo as <b>their product, not a Databricks console</b>. The exec sees a finished app; you'll reveal it's all governed lakehouse underneath.</div></div>
+    <div class="row"><div class="tag">Fallback</div><div class="body"><div class="fallback">If the greeting/cards are slow, that's the valuation endpoint waking (scale-to-zero). Talk over it for 5s — it warms on this click.</div></div></div>
+  </div>
+</div>
+
+<!-- BEAT 1 : HERO -->
+<div class="beat"><div class="bh"><div class="bnum">1</div>
+  <div><div class="bt">★ Hero — upload on the laptop, ask on the phone, cited</div><div class="loc">App ▸ Squad ▸ Contracts  →  Genie One (mobile), Agent mode</div></div>
+  <div class="time hero">6 min</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Click</div><div class="body">
+      <b>1.</b> Go <b>Squad ▸ Contracts</b>. Under <b>"Upload a contract PDF"</b> drag in <span class="mono">contract_duarte.pdf</span> — a player who is <i>not</i> in the squad. It uploads.<br>
+      <b>2.</b> Pick up the <b>phone</b>. In <b>Genie One</b> (Acme Scout space, <b>Agent mode ON</b>) ask: <i>"What is Mateo Duarte's release clause and when does his contract end?"</i><br>
+      <b>3.</b> It answers <b>€55M, 30 June 2029</b> — and shows a <b>citation to the PDF you dropped 20 seconds ago</b>. Physically point at the citation.</div></div>
+    <div class="row"><div class="tag">Hook</div><div class="body hook">"That PDF didn't go to a SaaS inbox — it landed inside my catalog, governed like any table. Seconds later, on my phone, my AI reads the actual signed contract and quotes it back to me with the source."</div></div>
+    <div class="row"><div class="tag">So what</div><div class="body sowhat">The single most important 90 seconds: <b>unstructured → governed → cited answer, cross-device, in real time.</b> This is the "can I trust the AI?" objection answered live — it's reading their data and showing receipts.</div></div>
+    <div class="row"><div class="tag">Tech truth</div><div class="body">File written to a <b>Unity Catalog Volume</b> via the Files API (same governance boundary as tables). Genie <b>Agent mode</b> does retrieval over the Volume and cites the source file. <span class="pill">UC Volumes</span><span class="pill">Files API</span><span class="pill">Genie Agent mode</span><span class="pill">ai_parse_document</span></div></div>
+    <div class="row"><div class="tag">Verified</div><div class="body"><span class="pill g">pre-checked</span> The exact Duarte PDF parses to <span class="mono">Mateo Duarte | 55.0 | 30 June 2029</span> via <span class="mono">ai_parse_document</span>. The upload endpoint + Volume write confirmed through the deployed app.</div></div>
+    <div class="row"><div class="tag">Fallback</div><div class="body"><div class="fallback"><b>Genie returns nothing / generic?</b> Agent mode is OFF — toggle it on in the chat box, re-ask. <b>Phone network flaky?</b> Ask the same question in the app's <b>Ask Acme AI</b> tab on the laptop — same cited answer. <b>Upload doesn't seem to land?</b> It did — the endpoint returns instantly; just re-ask Genie.</div></div></div>
+  </div>
+</div>
+
+<!-- BEAT 2 : UCO 1 - ingestion (voice) -->
+<div class="beat"><div class="bh"><div class="bnum">2</div>
+  <div><div class="bt">Their UCO #1 — multimodal ingestion (the voice half)</div><div class="loc">App ▸ Scouting ▸ Scout Reports</div></div>
+  <div class="time">4 min</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Click</div><div class="body">Go <b>Scouting ▸ Scout Reports</b>. Hit <b>● Record note</b> and read a few lines from <span class="mono">scout_note_duarte_script.txt</span> ("Note on Mateo Duarte — electric off the left…"), then stop. The app files it.</div></div>
+    <div class="row"><div class="tag">Hook</div><div class="body hook">"My scout is pitchside in Argentina — he doesn't type a report, he talks. Seconds later that observation is a governed text file sitting next to the contract and the ratings, and my assistant can quote it."</div></div>
+    <div class="row"><div class="tag">So what</div><div class="body sowhat">Closes the loop on their first UCO: <b>PDF and voice both become governed, searchable, citable data</b> — zero friction for the person in the field.</div></div>
+    <div class="row"><div class="tag">Tech truth</div><div class="body">Both the <b>audio</b> (<span class="mono">audio/*.wav</span>) <b>and</b> the <b>transcript</b> (<span class="mono">transcripts/scout_note_*.txt</span>) land in the UC Volume — not a table. That transcript is what Acme Scout later reads.</div></div>
+    <div class="row"><div class="tag">Honesty</div><div class="body"><div class="flag">Transcription today runs in the browser via the <b>Web Speech API</b> (zero infra). It's a <b>one-env-var swap</b> (<span class="mono">TRANSCRIBE_ENDPOINT</span>) to a <b>Whisper Model Serving</b> endpoint server-side — no app-code change. Say this: it shows the production path without pretending we deployed a GPU we didn't.</div></div></div>
+    <div class="row"><div class="tag">Fallback</div><div class="body"><div class="fallback">Browser mic blocked / no transcript appears → the demo doesn't depend on this specific note. Say the one-env-var line and move on; the 10 seeded scout notes are already in the Volume and drive the next beat.</div></div></div>
+  </div>
+</div>
+
+<!-- BEAT 3 : UCO 2 - scout agent (Genie blended) -->
+<div class="beat"><div class="bh"><div class="bnum">3</div>
+  <div><div class="bt">Their UCO #2 — the scout agent (blended + cited)</div><div class="loc">Genie One / App ▸ Ask Acme AI</div></div>
+  <div class="time">4 min</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Click</div><div class="body">Escalate through the questions. The money one: <i>"What is our valuation of Cristian Mosquera and what does the latest scout report say about him?"</i> → valuation from the <b>table</b> + observation quoted from the <b>transcript</b>, each cited. Then the structured one (under-18-months contracts) to show range.</div></div>
+    <div class="row"><div class="tag">Hook</div><div class="body hook">"One question, plain English. It answers from my live numbers AND the actual scout's words, and it shows me its sources. That's the difference between a chatbot and a knowledge assistant."</div></div>
+    <div class="row"><div class="tag">So what</div><div class="body sowhat">This is their second UCO delivered: <b>one governed assistant across structured + unstructured, grounded and cited.</b> No hallucination risk story — it's reading their catalog.</div></div>
+    <div class="row"><div class="tag">Tech truth</div><div class="body">Genie Space over <b>8 Delta tables + the documents Volume</b>. Agent mode = NL→SQL + retrieval over files. <span class="pill">Genie / AI-BI</span><span class="pill">Agent mode retrieval</span><span class="pill">grounded + cited</span></div></div>
+    <div class="row"><div class="tag">Fallback</div><div class="body"><div class="fallback">Document question comes back thin → Agent mode toggle. If a citation link is slow to render, the answer text still names the source file — read it aloud and point.</div></div></div>
+  </div>
+</div>
+
+<!-- BEAT 4 : Clip Search -->
+<div class="beat"><div class="bh"><div class="bnum">4</div>
+  <div><div class="bt">Scouting Clip Search — search the film</div><div class="loc">App ▸ Clip Search</div></div>
+  <div class="time">3 min</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Click</div><div class="body">Type a <b>name</b>: <span class="mono">Vini Jr</span>, then <span class="mono">Luis Diaz</span> — only that player's clips, every time. Then a <b>description</b>: <span class="mono">player in a red kit</span> — semantic grid across the film. Video cards play inline.</div></div>
+    <div class="row"><div class="tag">Hook</div><div class="body hook">"My video archive used to be a folder nobody opened. Now I search it by name — dead accurate — or by what's happening on the pitch. Same platform, same governance, now including the film."</div></div>
+    <div class="row"><div class="tag">So what</div><div class="body sowhat">Multimodal, governed <b>video</b> search. Two paths, said out loud: <b>a name is a filter, not a vibe</b> (deterministic resolver); a description falls back to embedding similarity.</div></div>
+    <div class="row"><div class="tag">Tech truth</div><div class="body">Each video frame-sampled (ffmpeg) → vision-captioned (<span class="mono">databricks-gpt-5-mini</span>) → embedded (<span class="mono">gte-large-en</span>) → one governed row in <span class="mono">clip_index</span>. <span class="pill">FM vision</span><span class="pill">embeddings</span><span class="pill">vector similarity</span><span class="pill">UC Volumes (video)</span></div></div>
+    <div class="row"><div class="tag">Fallback</div><div class="body"><div class="fallback">A card looks off → it's still that player's own tagged clip (footage was content-verified). Video won't play → the poster frame still shows; move to the next query.</div></div></div>
+  </div>
+</div>
+
+<h2 class="sect">The five AI assistants — role-specific, all additive</h2>
+<p class="note">One governed platform, <span class="mono">ai_query</span>/Model Serving everywhere, synthetic feeds that swap to live with one config change, and every AI output <b>explained or cited</b>. Pace these fast (~2 min each) and land on FFP.</p>
+
+<!-- BEAT 5 : Transfer -->
+<div class="beat"><div class="bh"><div class="bnum">5</div>
+  <div><div class="bt">AI Transfer Assistant — interactive, explainable valuation</div><div class="loc">App ▸ AI Transfer</div></div>
+  <div class="time">2.5 min</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Click</div><div class="body">Open <b>Saka</b> (≈€146M). Drag <b>Goals /90</b> — value moves live with the reason attached. Switch to <b>Raya (GK)</b> — the sliders <b>change to keeper drivers</b> (clean-sheet%, save%, aerial claims). Hit <b>Recompute on Model Serving</b>.</div></div>
+    <div class="row"><div class="tag">Hook</div><div class="body hook">"Valuation isn't one number, it's a conversation. I drag 'goals per 90' and watch €18M appear with the reason attached — position-aware, explainable to the last euro. A model I can defend in a negotiation."</div></div>
+    <div class="row"><div class="tag">So what</div><div class="body sowhat"><b>Explainable ML on Model Serving</b> — additive pyfunc (<span class="mono">value = peer base + Σ per-driver</span>), not a black box.</div></div>
+    <div class="row"><div class="tag">Honesty</div><div class="body"><div class="flag">KPIs are <b>synthetic, Opta/StatsBomb-shaped</b> (<span class="mono">player_kpis</span>) — one-config swap to the live stats feed. The model is illustrative/calibrated; the production path is <b>AutoML on historical transfer fees</b>, same app, swap the coefficients.</div></div></div>
+    <div class="row"><div class="tag">Fallback</div><div class="body"><div class="fallback">First recompute lags → serving endpoint scale-to-zero warm-up; the UI already recomputed locally and they agree (verified in check_run). Just say "that was the served model catching up."</div></div></div>
+  </div>
+</div>
+
+<!-- BEAT 6 : Physio -->
+<div class="beat"><div class="bh"><div class="bnum">6</div>
+  <div><div class="bt">AI Physio / Load Manager — minutes from wearables</div><div class="loc">App ▸ AI Physio</div></div>
+  <div class="time">2 min</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Click</div><div class="body">Show the <b>load board</b> (most-at-risk first, Red/Amber/Green). Click a player → GPS + recovery sparklines → <b>Generate recommendation</b> for a live, grounded rationale.</div></div>
+    <div class="row"><div class="tag">Hook</div><div class="body hook">"My sports scientists live in WHOOP and STATSports; my recruitment team lives in the ratings. Here they're the same platform. I can see who's spiking — ACWR in the red — and get an AI call on how many minutes to give him Saturday, with the reason."</div></div>
+    <div class="row"><div class="tag">So what</div><div class="body sowhat">Operational data fusion + <b>live <span class="mono">ai_query</span> rationale</b> grounded in the player's own numbers. Stops a €100M asset tearing a hamstring.</div></div>
+    <div class="row"><div class="tag">Honesty</div><div class="body"><div class="flag">WHOOP + STATSports feeds are <b>synthetic/representative</b> (<span class="mono">load_status</span>); the connector is a one-config swap (<span class="mono">notebooks/ingest_whoop.py</span>).</div></div></div>
+    <div class="row"><div class="tag">Fallback</div><div class="body"><div class="fallback">Recommendation slow → it's a live FM call; the board numbers (ACWR, minutes) are already on screen — narrate those.</div></div></div>
+  </div>
+</div>
+
+<!-- BEAT 7 : Nutrition -->
+<div class="beat"><div class="bh"><div class="bnum">7</div>
+  <div><div class="bt">AI Nutrition Assistant — fuelling from load + a voice note</div><div class="loc">App ▸ AI Nutrition</div></div>
+  <div class="time">2 min</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Click</div><div class="body">Pick a player (metrics: distance, sleep, recovery, next-match load). Type or record a note — "prefers rice over pasta, lactose intolerant, big match Sunday" — hit <b>Generate fuelling plan</b>. A tailored macro plan renders.</div></div>
+    <div class="row"><div class="tag">Hook</div><div class="body hook">"Same platform, same data — now my nutritionist gets a plan that already knows this player ran 77km last week and slept badly. The player just talks, and the plan adapts."</div></div>
+    <div class="row"><div class="tag">So what</div><div class="body sowhat"><b>Reuse</b> is the story: the physio data <i>and</i> the voice pipeline you already saw, now producing structured-JSON fuelling plans via <span class="mono">ai_query</span>.</div></div>
+    <div class="row"><div class="tag">Honesty</div><div class="body"><div class="flag">Metrics reuse the synthetic physio feed; voice is the same browser Web-Speech pipeline (same one-env-var Whisper production path).</div></div></div>
+    <div class="row"><div class="tag">Fallback</div><div class="body"><div class="fallback">Voice capture flaky → type the dietary note instead; the plan still adapts to it live.</div></div></div>
+  </div>
+</div>
+
+<!-- BEAT 8 : Opposition -->
+<div class="beat"><div class="bh"><div class="bnum">8</div>
+  <div><div class="bt">AI Opposition / Match-Prep Analyst — brief with clip citations</div><div class="loc">App ▸ AI Opposition</div></div>
+  <div class="time">2 min</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Click</div><div class="body">Pick <b>Manchester City</b>. Show the metrics strip (PPDA, xG for/against, field tilt), then the auto brief: how they hurt us / how we beat them / set-piece / <b>key battle</b> — with a <b>scouting-clip citation</b> (Rodri → real film).</div></div>
+    <div class="row"><div class="tag">Hook</div><div class="body hook">"This is a whole analyst's afternoon in one click. It tells me how they'll hurt us and how we set up to beat them — and when it says 'watch Rodri drop in and progress', it hands me the clip."</div></div>
+    <div class="row"><div class="tag">So what</div><div class="body sowhat">The <b>clip index is cited from a second surface</b> — data and film, one governed answer, with the receipts.</div></div>
+    <div class="row"><div class="tag">Honesty</div><div class="body"><div class="flag">Opponent metrics are synthetic but provider-shaped (Opta/StatsBomb + SkillCorner columns) — one-config swap to the live feed.</div></div></div>
+    <div class="row"><div class="tag">Fallback</div><div class="body"><div class="fallback">Brief slow to generate (live FM) → talk through the metrics strip; the citation resolves deterministically once the brief lands.</div></div></div>
+  </div>
+</div>
+
+<!-- BEAT 9 : FFP (finale) -->
+<div class="beat"><div class="bh"><div class="bnum">9</div>
+  <div><div class="bt">★ FFP &amp; Contracts — the board conversation (fills the Financials gap)</div><div class="loc">App ▸ FFP &amp; Contracts</div></div>
+  <div class="time hero">3 min</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Click</div><div class="body">Open <b>FFP &amp; Contracts</b>. Walk the <b>verdict</b> card (Compliant), the <b>squad-cost ratio</b> gauge vs the 70% cap (≈62%), <b>PSR headroom</b>, <b>investment headroom</b>, risk flags, the economics table, and the <b>governed contract PDFs as evidence</b>. Note the old <b>Financials ▸ SOON</b> tab — this <i>is</i> that gap, now filled.</div></div>
+    <div class="row"><div class="tag">Hook</div><div class="body hook">"This is the conversation with the board. It reads my real contracts, models my squad-cost ratio and PSR headroom, tells me how much I can actually spend this window — and every claim traces back to the signed PDF, governed in Unity Catalog."</div></div>
+    <div class="row"><div class="tag">So what</div><div class="body sowhat">Ends on the <b>exec-money question</b>. Evidence cards pull the <b>FILE-column</b> table — governance all the way down to the document. This is where a "coming soon" became "here it is."</div></div>
+    <div class="row"><div class="tag">Tech truth</div><div class="body">Wages + contract dates are the <b>real</b> demo data; amortization computed transparently. Verdict is live <span class="mono">ai_query</span>. Evidence = <span class="mono">contract_files</span> (FILE column) + <span class="mono">ai_parse_document</span>. <span class="pill">FILE column type</span><span class="pill">ai_query</span><span class="pill">governed evidence</span></div></div>
+    <div class="row"><div class="tag">Honesty</div><div class="body"><div class="flag">Club revenue/opex + acquisition fees are <b>illustrative constants</b> (one-config swap to the finance ledger). The model itself is fully transparent.</div></div></div>
+    <div class="row"><div class="tag">Fallback</div><div class="body"><div class="fallback">Verdict text slow (live FM) → the ratio gauge, PSR headroom and evidence cards are static-fast; present those and let the verdict fill in.</div></div></div>
+  </div>
+</div>
+
+<!-- GOVERNANCE BEAT -->
+<div class="beat" style="border-color:var(--blue)"><div class="bh" style="background:var(--blue-soft)"><div class="bnum" style="background:var(--blue)">🔒</div>
+  <div><div class="bt">30-second governance beat (drop it in wherever they lean in)</div><div class="loc">whole platform</div></div>
+  <div class="time" style="background:#fff;color:var(--blue)">30 sec</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Say</div><div class="body hook">"Everything you've seen — the tables, the contract PDFs, the voice notes, the film — lives under <b>one Unity Catalog</b>. A Volume is governed exactly like a table: grants, lineage, audit. And this is <b>your account, isolated</b> — no data left the platform, nothing was trained on anyone else's data, and there's no cross-account bleed. That's the part your security team will actually care about."</div></div>
+    <div class="row"><div class="tag">Name-drop</div><div class="body"><span class="pill">Unity Catalog</span><span class="pill">Volumes = table-grade governance</span><span class="pill">lineage + audit</span><span class="pill">per-account isolation</span><span class="pill">nothing leaves the platform</span></div></div>
+  </div>
+</div>
+
+<!-- CLOSE -->
+<div class="beat"><div class="bh"><div class="bnum">✓</div>
+  <div><div class="bt">Close — tie it back</div><div class="loc">30–45 sec</div></div>
+  <div class="time">1 min</div></div>
+  <div class="bb">
+    <div class="row"><div class="tag">Say</div><div class="body hook">"Four formats — numbers, contracts, voice, film — one governed platform. One AI assistant that answers across all of them <b>and cites its sources</b>. Operational writes and explainable models on the same data. That's not four tools stitched together — that's the Data Intelligence Platform doing what a Sporting Director actually needs."</div></div>
+    <div class="row"><div class="tag">If asked "real or mock?"</div><div class="body">App is <b>live and deployed</b>; data is <b>real Delta tables</b>; PDFs/transcripts are <b>real files in a real UC Volume</b>; clips are <b>real footage</b> on real FM vision + embedding endpoints. The only not-deployed-here piece is server-side Whisper — one env var away. Harness: <b>53/53</b>.</div></div>
+  </div>
+</div>
+
+<!-- ================= LIVE vs SYNTHETIC ================= -->
+<h2 class="sect">Live vs synthetic — the honest map (know this cold)</h2>
+<table class="status">
+  <tr><th>Component</th><th>Status</th><th>What's real / what's not</th></tr>
+  <tr><td>App + all endpoints (deployed)</td><td class="st-live">LIVE</td><td>FastAPI + SPA on Databricks Apps, running as the app service principal.</td></tr>
+  <tr><td>players / contracts / scouting_targets / scout_reports</td><td class="st-live">LIVE</td><td>Real Delta tables (20/14/7/10 rows). Wages + contract dates are real demo data.</td></tr>
+  <tr><td>Contract PDFs + scout transcripts in the Volume</td><td class="st-live">LIVE</td><td>Real files in <span class="mono">acme_sports.demo.documents</span> (11 contracts, 10 transcripts). <span class="mono">ai_parse_document</span> + <span class="mono">ai_extract</span> pulled clause/date from the PDFs.</td></tr>
+  <tr><td>PDF upload → Volume (Squad ▸ Contracts)</td><td class="st-live">LIVE</td><td>Verified through the deployed app; fresh Duarte PDF parses to €55M / 30-Jun-2029.</td></tr>
+  <tr><td>Voice note → audio + transcript in Volume</td><td class="st-live">LIVE</td><td>Both land. <b>Transcription = browser Web Speech</b> (client-side); server Whisper is a one-env-var swap (<span class="mono">TRANSCRIBE_ENDPOINT</span>).</td></tr>
+  <tr><td>Acme Scout (Genie Agent mode)</td><td class="st-live">LIVE</td><td>Blended + cited over 8 tables + the Volume. Verified end-to-end.</td></tr>
+  <tr><td>Clip Search (image + video)</td><td class="st-live">LIVE</td><td>Real footage, real FM vision captions + embeddings; deterministic name resolver + semantic scene mode.</td></tr>
+  <tr><td>Lakebase scenario write (Squad ▸ Planning)</td><td class="st-live">LIVE</td><td>App writes transactionally to Lakebase Postgres and reads back — verified through the app.</td></tr>
+  <tr><td>Valuation + Transfer models (Model Serving)</td><td class="st-live">LIVE</td><td>Two serverless endpoints; served == local math (verified).</td></tr>
+  <tr><td>Injury / valuation Delta scoring</td><td class="st-live">LIVE</td><td>Scored into Delta (20 players), surfaced + answerable in Genie.</td></tr>
+  <tr><td>player_kpis · load_status (WHOOP/STATSports) · opponents · contract_economics fees, club revenue/opex</td><td class="st-syn">SYNTHETIC</td><td>Provider-shaped, calibrated to plausible ranges. Each is a <b>one-config swap</b> to the live feed. Say so.</td></tr>
+  <tr><td>Server-side transcription (Whisper serving)</td><td class="st-syn">NOT DEPLOYED</td><td>Production path only — one env var (<span class="mono">TRANSCRIBE_ENDPOINT</span>). Browser Web Speech covers the live demo.</td></tr>
+  <tr><td>App-created scenario → answerable in Genie</td><td class="st-gap">GAP — don't rely on it</td><td>A scenario saved live writes to Lakebase but its Delta mirror <b>silently fails</b> (app SP has SELECT, not MODIFY, on the schema). Only pre-seeded <b>Scenario B</b> is in the Delta tables. <b>Ask Genie about Scenario B, never about a scenario you just created.</b></td></tr>
+</table>
+
+<p class="note" style="margin-top:22px">Generated for the on-site demo · profile <span class="mono">fe-vm-classic-stable-9cgeia</span> · check_run.py 53/53 · tag <span class="mono">demo-prep-v1</span>. Talk-track condensed from <span class="mono">notebooks/00_demo_flow.py</span>.</p>
+
+</div>

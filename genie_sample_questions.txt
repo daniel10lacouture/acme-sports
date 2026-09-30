@@ -1,0 +1,6 @@
+Which first-team players have the highest Acme Player Rating (GPR)?
+Show me players with fewer than 24 months left on their contract, sorted by GPR.
+What is Bukayo Saka's release clause and when does his contract end?
+Summarize our scout's report on Cristian Mosquera.
+What is Cristian Mosquera's estimated valuation, and what did our scout say about him?
+Which of our centre-backs is the best value, and does his contract or a scout note raise any concerns?
