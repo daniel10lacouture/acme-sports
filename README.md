@@ -6,6 +6,12 @@ documents** (contract PDFs + scout-note transcripts in a UC Volume), demoable fr
 **Genie One iOS app**, plus a custom **Databricks App** (React + FastAPI) that mirrors the
 Acme Sports product UI with two working upload flows.
 
+## Execution evidence
+Real, text-readable output captured live from the workspace — see **[`evidence/`](evidence/)**
+(table row counts, contract-PDF field extraction, valuation-model output, and cited Genie
+Agent answers). Proof the end-to-end journey ran: Lakeflow → Unity Catalog → Lakebase →
+ML/GenAI → Genie → Databricks App.
+
 ## Environment
 - Workspace: `https://YOUR_WORKSPACE.cloud.databricks.com` (profile `YOUR_PROFILE`, `DATABRICKS_AUTH_STORAGE=plaintext`)
 - Catalog/schema: `acme_sports.demo`  ·  Warehouse: `Genie-Warehouse` (`YOUR_WAREHOUSE_ID`)
